@@ -1,25 +1,34 @@
 package com.example.e_commerce_backend.models;
 
 import jakarta.annotation.Nonnull;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 
+import java.math.BigDecimal;
+import java.util.Map;
+
+
 @AllArgsConstructor
 @Data
 @Document
 @NoArgsConstructor
+@Builder
 public class Product {
     @Id
     String id;
-    @Field(targetType = FieldType.INT32) @Nonnull
     String name;
-
     String category;
     String description;
+    @Field(targetType = FieldType.DECIMAL128)
+    BigDecimal price;
+    Map<String,Object> specs;
+    String imageBase64;
+    Integer quantity;
 }
