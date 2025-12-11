@@ -1,6 +1,9 @@
 package com.example.e_commerce_backend.services;
 
+import com.example.e_commerce_backend.dtos.CreateProductRequestDto;
 import com.example.e_commerce_backend.dtos.ProductDto;
+import com.example.e_commerce_backend.exceptions.ResourceNotFoundException;
+import com.example.e_commerce_backend.mappers.ProductMapper;
 import com.example.e_commerce_backend.models.Product;
 import com.example.e_commerce_backend.repos.ProductRepository;
 import com.example.e_commerce_backend.services.interfaces.ProductService;
@@ -16,14 +19,25 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public Optional<Product> getById(String id) {
-        return productRepository.findById(id);
+    public ProductDto getById(String id) {
+        Product retrievedProduct = productRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Product not found"));
+        return ProductMapper.toProductDto(retrievedProduct);
     }
 
     @Override
-    public ProductDto save(Product product) {
-        //TODO тут тоже проверка на случай вызова не из контроллера
-        productRepository.save(product);
-        return new ProductDto(product.getId());
+    public ProductDto save(CreateProductRequestDto request) {
+        Objects.requireNonNull(request, "Product name must not be null");
+        Product newProduct = Product.builder()
+                .name(request.getName())
+                .category(request.getCategory())
+                .description(request.getDescription())
+                .price(request.getPrice())
+                .specs(request.getSpecs())
+                .imageBase64(request.getImageBase64())
+                .quantity(request.getQuantity())
+                .build();
+        Product savedProduct = productRepository.save(newProduct);
+        return ProductMapper.toProductDto(savedProduct);
     }
 }
