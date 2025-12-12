@@ -1,5 +1,6 @@
 package com.example.e_commerce_backend.controllers;
 
+import com.example.e_commerce_backend.dtos.CategoryStatsDto;
 import com.example.e_commerce_backend.dtos.CreateProductRequestDto;
 import com.example.e_commerce_backend.exceptions.ResourceNotFoundException;
 import com.example.e_commerce_backend.dtos.ProductDto;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 
 @RestController
@@ -20,30 +22,34 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class ProductController {
 
-ProductService productService;
+    ProductService productService;
 
 
-@GetMapping("/{id}")
-ResponseEntity<ProductDto> getById(@PathVariable String id){
-    return ResponseEntity.ok(productService.getById(id));
-}
+    @GetMapping("/{id}")
+    ResponseEntity<ProductDto> getById(@PathVariable String id) {
+        return ResponseEntity.ok(productService.getById(id));
+    }
 
-@PostMapping //TODO: нужен глобальный обработчик, с ним круто выводится все поля где неверная инфа введена
-ResponseEntity<ProductDto> createProduct(@RequestBody @Validated CreateProductRequestDto productRequestDto){
-    return new ResponseEntity<>(productService.save(productRequestDto), HttpStatus.CREATED);
-}
+    @PostMapping
+        //TODO: нужен глобальный обработчик, с ним круто выводится все поля где неверная инфа введена
+    ResponseEntity<ProductDto> createProduct(@RequestBody @Validated CreateProductRequestDto productRequestDto) {
+        return new ResponseEntity<>(productService.createProduct(productRequestDto), HttpStatus.CREATED);
+    }
 
-// /api/products/?category={category}&sort={sort}&page={page}&size={size}
-    //if
-@GetMapping()
-ResponseEntity<Page<ProductDto>> getProducts(@RequestParam(required = false) String category,
-                                             @PageableDefault(size = 10) Pageable pageable){
-    return ResponseEntity.ok(productService.getProductsByCategory(category,pageable));
-}
-//@GetMapping("/api/products/categories")
+    // /api/products/?category={category}&sort={sort}&page={page}&size={size}
+    @GetMapping
+    ResponseEntity<Page<ProductDto>> getProducts(@RequestParam(required = false) String category,
+                                                 @PageableDefault(size = 10) Pageable pageable) {
+        return ResponseEntity.ok(productService.getProductsByCategory(category, pageable));
+    }
 
-@ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException ex){
-    return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
-}
+    @GetMapping("/categories")
+    ResponseEntity<List<CategoryStatsDto>> getCategories(){
+        return ResponseEntity.ok(productService.findAllCategories());
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
 }
