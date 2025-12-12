@@ -23,7 +23,7 @@ public class CreateProductRequestDto {
     BigDecimal price;
 
     @Valid //TODO: key value of type Object is not properly validated. Can be of any size.
-    @NotNull(message = "Specs cannot be null") @Size(max = 100)
+    @Size(max = 100)
     Map<@NotBlank(message = "Spec name cannot be blank") @Size(min=2, max=50) String,
         @NotNull(message = "Spec value cannot be null")  Object> specs;
 
