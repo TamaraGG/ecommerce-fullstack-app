@@ -14,9 +14,10 @@ public record ProductDto(
         String description,
         BigDecimal price,
         String imageBase64,
-
         Map<String, Object> specs,
-        Integer quantity
+        Integer quantity,
+        Double averageRating,
+        Integer reviewCount
 ){
 //    public ProductDto {
 //        if (id == null || id.isBlank()) {

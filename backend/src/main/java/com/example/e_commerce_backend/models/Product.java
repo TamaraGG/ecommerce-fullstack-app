@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
@@ -24,6 +26,7 @@ public class Product {
     @Id
     String id;
     String name;
+    @Indexed
     String category;
     String description;
     @Field(targetType = FieldType.DECIMAL128)
@@ -31,4 +34,11 @@ public class Product {
     Map<String,Object> specs;
     String imageBase64;
     Integer quantity;
+    //Данные из reviews - денормализация
+    Double averageRating = 0.0;
+    Integer reviewCount = 0;
+
+    //optimistic locking
+    @Version
+    Long version;
 }

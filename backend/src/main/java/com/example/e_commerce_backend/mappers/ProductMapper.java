@@ -14,6 +14,8 @@ public class ProductMapper {
                 .imageBase64(product.getImageBase64())
                 .specs(product.getSpecs())
                 .quantity(product.getQuantity())
+                .averageRating(product.getAverageRating())
+                .reviewCount(product.getReviewCount())
                 .build();
     }
 }
