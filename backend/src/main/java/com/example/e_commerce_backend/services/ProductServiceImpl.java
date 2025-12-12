@@ -8,6 +8,8 @@ import com.example.e_commerce_backend.models.Product;
 import com.example.e_commerce_backend.repos.ProductRepository;
 import com.example.e_commerce_backend.services.interfaces.ProductService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -39,5 +41,16 @@ public class ProductServiceImpl implements ProductService {
                 .build();
         Product savedProduct = productRepository.save(newProduct);
         return ProductMapper.toProductDto(savedProduct);
+    }
+
+    @Override
+    public Page<ProductDto> getProductsByCategory(String category, Pageable pageable) {
+        Page<Product> products;
+        if (category == null || category.isEmpty()) {
+            products = productRepository.findAll(pageable);
+        } else {
+            products = productRepository.findByCategory(category, pageable);
+        }
+        return products.map(ProductMapper::toProductDto);
     }
 }
