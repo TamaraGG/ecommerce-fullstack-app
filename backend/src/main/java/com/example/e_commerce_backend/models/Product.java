@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
@@ -25,8 +26,9 @@ import java.util.Map;
 public class Product {
     @Id
     String id;
+    @TextIndexed(weight = 10)
     String name;
-    @Indexed
+    @Indexed @TextIndexed(weight = 5)
     String category;
     String description;
     @Field(targetType = FieldType.DECIMAL128)

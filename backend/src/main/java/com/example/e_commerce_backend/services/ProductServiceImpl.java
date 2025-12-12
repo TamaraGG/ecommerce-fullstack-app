@@ -13,6 +13,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,6 +61,8 @@ public class ProductServiceImpl implements ProductService {
         return products.map(ProductMapper::toProductDto);
     }
 
+
+
     @Override
     public void updateProductRating(String productId, Integer rating) {
         Product pToUpdate = productRepository.findById(productId)
@@ -84,9 +87,17 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAllCategories();
     }
 
+    @Override
+    public Page<ProductDto> searchProductsByPattern(String pattern, Pageable pageable) {
+        TextCriteria textCriteria = TextCriteria.forDefaultLanguage().matching(pattern);
+        Page<Product> productPage = productRepository.findAllBy(textCriteria,pageable);
+        return productPage.map(ProductMapper::toProductDto);
+    }
+
     @CacheEvict(value = "categories", allEntries = true)
     public void refreshCategories() {
     }
+
 
 
 }

@@ -15,4 +15,5 @@ public interface ProductService {
    void updateProductRating(String productId, Integer rating);
    boolean existsById(String productId);
    List<CategoryStatsDto> findAllCategories();
+   Page<ProductDto> searchProductsByPattern(String pattern, Pageable pageable);
 }

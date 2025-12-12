@@ -48,6 +48,11 @@ public class ProductController {
         return ResponseEntity.ok(productService.findAllCategories());
     }
 
+    @GetMapping("/search")
+    ResponseEntity<Page<ProductDto>> searchProducts(@RequestParam String pattern, Pageable pageable) {
+        return ResponseEntity.ok(productService.searchProductsByPattern(pattern, pageable));
+    }
+
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
