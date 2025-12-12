@@ -23,8 +23,6 @@ public class Review {
     String id;
     @Indexed//@DbRef not recommended
     String productId;
-    @Indexed
-    String userId;
     String author;
     Integer rating;
     String comment;

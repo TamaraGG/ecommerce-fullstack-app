@@ -7,7 +7,6 @@ public class ReviewMapper {
     public static ReviewDto toReviewDto(Review review) {
         return ReviewDto.builder()
                 .id(review.getId())
-                .userId(review.getUserId())
                 .productId(review.getProductId())
                 .author(review.getAuthor())
                 .rating(review.getRating())
