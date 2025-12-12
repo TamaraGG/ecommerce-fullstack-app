@@ -1,4 +1,14 @@
 services:
+  backend:
+    build: .
+    container_name: backend-ecommerce-1
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_MONGODB_URI=mongodb://mongodb:27017/appDB
+    depends_on:
+      - mongodb
+
   mongodb:
     image: mongo:8.2
     ports:
