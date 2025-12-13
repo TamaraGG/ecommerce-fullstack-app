@@ -1,9 +1,9 @@
 package com.example.e_commerce_backend.controllers;
 
-import com.example.e_commerce_backend.dtos.CategoryStatsDto;
-import com.example.e_commerce_backend.dtos.CreateProductRequestDto;
+import com.example.e_commerce_backend.dtos.product.CategoryStatsDto;
+import com.example.e_commerce_backend.dtos.product.CreateProductRequestDto;
 import com.example.e_commerce_backend.exceptions.ResourceNotFoundException;
-import com.example.e_commerce_backend.dtos.ProductDto;
+import com.example.e_commerce_backend.dtos.product.ProductDto;
 import com.example.e_commerce_backend.services.interfaces.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -22,18 +22,18 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductController {
 
-    ProductService productService;
+    final ProductService productService;
 
 
     @GetMapping("/{id}")
-    ResponseEntity<ProductDto> getById(@PathVariable String id) {
-        return ResponseEntity.ok(productService.getById(id));
+    ResponseEntity<ProductDto> getProductById(@PathVariable String id) {
+        return ResponseEntity.ok(productService.getProductById(id));
     }
 
     @PostMapping
         //TODO: нужен глобальный обработчик, с ним круто выводится все поля где неверная инфа введена
     ResponseEntity<ProductDto> createProduct(@RequestBody @Validated CreateProductRequestDto productRequestDto) {
-        return new ResponseEntity<>(productService.createProduct(productRequestDto), HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(productService.createProduct(productRequestDto));
     }
 
     // /api/products/?category={category}&sort={sort}&page={page}&size={size}
@@ -56,5 +56,10 @@ public class ProductController {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<String> handleResourceNotFound(ResourceNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

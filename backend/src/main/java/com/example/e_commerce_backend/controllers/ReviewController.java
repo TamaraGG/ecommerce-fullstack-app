@@ -1,7 +1,7 @@
 package com.example.e_commerce_backend.controllers;
 
-import com.example.e_commerce_backend.dtos.CreateReviewRequestDto;
-import com.example.e_commerce_backend.dtos.ReviewDto;
+import com.example.e_commerce_backend.dtos.review.CreateReviewRequestDto;
+import com.example.e_commerce_backend.dtos.review.ReviewDto;
 import com.example.e_commerce_backend.exceptions.ResourceNotFoundException;
 import com.example.e_commerce_backend.services.interfaces.ReviewService;
 import lombok.AllArgsConstructor;
@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 @RequestMapping("/api/reviews")
 public class ReviewController {
-    ReviewService reviewService;
+    final ReviewService reviewService;
 
     @PostMapping
     ResponseEntity<ReviewDto> createReview(@RequestBody @Validated CreateReviewRequestDto request) {
-        return ResponseEntity.ok(reviewService.createReview(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(reviewService.createReview(request));
     }
 
     @GetMapping
