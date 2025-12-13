@@ -1,8 +1,9 @@
 package com.example.e_commerce_backend.services;
 
-import com.example.e_commerce_backend.dtos.CategoryStatsDto;
-import com.example.e_commerce_backend.dtos.CreateProductRequestDto;
-import com.example.e_commerce_backend.dtos.ProductDto;
+import com.example.e_commerce_backend.dtos.product.CategoryStatsDto;
+import com.example.e_commerce_backend.dtos.product.CreateProductRequestDto;
+import com.example.e_commerce_backend.dtos.product.ProductDto;
+import com.example.e_commerce_backend.exceptions.NotEnoughStockException;
 import com.example.e_commerce_backend.exceptions.ResourceNotFoundException;
 import com.example.e_commerce_backend.mappers.ProductMapper;
 import com.example.e_commerce_backend.models.Product;
@@ -12,16 +13,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -29,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
     @Override
-    public ProductDto getById(String id) {
+    public ProductDto getProductById(String id) {
         Product retrievedProduct = productRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Product not found"));
         return ProductMapper.toProductDto(retrievedProduct);
@@ -94,6 +91,17 @@ public class ProductServiceImpl implements ProductService {
         return products.map(ProductMapper::toProductDto);
     }
 
+    @Override
+    public void decreaseStock(String productId, Integer amount) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(()-> new ResourceNotFoundException("Product not found"));
+        if (product.getQuantity() < amount) {
+            throw new NotEnoughStockException("Not enough stock to reserve product: " + product.getName()
+                        +". Available stock: " + product.getQuantity());
+        }
+        product.setQuantity(product.getQuantity() - amount);
+        productRepository.save(product);
+    }
 
 
 }
