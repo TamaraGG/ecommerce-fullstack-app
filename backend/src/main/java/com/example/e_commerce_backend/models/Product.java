@@ -36,7 +36,7 @@ public class Product {
     Map<String,Object> specs;
     String imageBase64;
     Integer quantity;
-    //Данные из reviews - денормализация
+    //data from reviews - denormalization
     Double averageRating = 0.0;
     Integer reviewCount = 0;
 
