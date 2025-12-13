@@ -2,7 +2,6 @@ package com.example.e_commerce_backend.controllers;
 
 import com.example.e_commerce_backend.dtos.order.CreateOrderRequestDto;
 import com.example.e_commerce_backend.dtos.order.OrderDto;
-import com.example.e_commerce_backend.exceptions.ResourceNotFoundException;
 import com.example.e_commerce_backend.services.interfaces.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

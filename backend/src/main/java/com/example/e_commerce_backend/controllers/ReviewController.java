@@ -2,7 +2,6 @@ package com.example.e_commerce_backend.controllers;
 
 import com.example.e_commerce_backend.dtos.review.CreateReviewRequestDto;
 import com.example.e_commerce_backend.dtos.review.ReviewDto;
-import com.example.e_commerce_backend.exceptions.ResourceNotFoundException;
 import com.example.e_commerce_backend.services.interfaces.ReviewService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;

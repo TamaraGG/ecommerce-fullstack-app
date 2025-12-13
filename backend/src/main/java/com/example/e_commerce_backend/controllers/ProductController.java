@@ -2,7 +2,6 @@ package com.example.e_commerce_backend.controllers;
 
 import com.example.e_commerce_backend.dtos.product.CategoryStatsDto;
 import com.example.e_commerce_backend.dtos.product.CreateProductRequestDto;
-import com.example.e_commerce_backend.exceptions.ResourceNotFoundException;
 import com.example.e_commerce_backend.dtos.product.ProductDto;
 import com.example.e_commerce_backend.services.interfaces.ProductService;
 import lombok.AllArgsConstructor;
