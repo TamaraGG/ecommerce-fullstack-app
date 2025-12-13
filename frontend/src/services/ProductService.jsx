@@ -12,7 +12,7 @@ export async function getProducts(id) {
   const response = await fetch(id ? URL + `/${id}` : "");
 
   if (!response.ok) {
-    throw new Error(`BACKEND: ${response.status}`);
+    throw new Error(`BACKEND: ${response.status} - ${response.message}`);
   }
   const data = await response.json();
   return data;
@@ -42,7 +42,7 @@ export async function getSortedPaginatedProducts(
   );
 
   if (!response.ok) {
-    throw new Error(`BACKEND: ${response.status}`);
+    throw new Error(`BACKEND: ${response.status} - ${response.message}`);
   }
   const data = await response.json();
   return data;
@@ -52,7 +52,7 @@ export async function getCategories() {
   const response = await fetch(URL + `/categories`);
 
   if (!response.ok) {
-    throw new Error(`BACKEND: ${response.status}`);
+    throw new Error(`BACKEND: ${response.status} - ${response.message}`);
   }
   const data = await response.json();
   return data;
