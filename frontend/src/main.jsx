@@ -7,6 +7,8 @@ import MainLayout from "./components/layouts/MainLayout.jsx";
 import CartProvider from "./context/CartProvider.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import SortedPaginatedProductsListPage from "./pages/SortedPaginatedProductsListPage.jsx";
+import SearchPage from "./pages/SearchPage.jsx";
+import CategoryPage from "./pages/CategoryPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -19,13 +21,7 @@ const router = createBrowserRouter([
       },
       {
         path: "products/",
-        element: (
-          <SortedPaginatedProductsListPage
-            url={""}
-            filterParam={"category"}
-            emptyMessage={"no products"}
-          />
-        ),
+        element: <CategoryPage />,
       },
       {
         path: "products/:id",
@@ -37,13 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: "search",
-        element: (
-          <SortedPaginatedProductsListPage
-            url={"/search"}
-            filterParam={"pattern"}
-            emptyMessage={"no products"}
-          />
-        ),
+        element: <SearchPage />,
       },
       // 5. Маршрут 404 (Необязательно, но полезно):
       // Добавьте этот маршрут в MainLayout, если он должен иметь шапку/подвал.
