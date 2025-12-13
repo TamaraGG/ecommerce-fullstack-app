@@ -30,8 +30,4 @@ public class ReviewController {
         return ResponseEntity.ok(reviewService.getReviewsByProductId(productId, pageable));
     }
 
-    @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
-    }
 }

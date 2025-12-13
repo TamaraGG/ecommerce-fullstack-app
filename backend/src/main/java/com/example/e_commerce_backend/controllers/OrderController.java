@@ -7,6 +7,7 @@ import com.example.e_commerce_backend.services.interfaces.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,7 +18,7 @@ public class OrderController {
     final OrderService orderService;
 
     @PostMapping
-    ResponseEntity<OrderDto> createOrder(@RequestBody CreateOrderRequestDto createOrderRequestDto) {
+    ResponseEntity<OrderDto> createOrder(@RequestBody @Validated CreateOrderRequestDto createOrderRequestDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createOrder(createOrderRequestDto));
     }
 
@@ -26,8 +27,4 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.OK).body(orderService.getOrderById(id));
     }
 
-    @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
-    }
 }
