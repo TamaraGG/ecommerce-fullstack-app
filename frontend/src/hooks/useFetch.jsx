@@ -16,7 +16,7 @@ function useFetch(fetchFunction, dependencies) {
         if (isMounted) setData(result);
       } catch (e) {
         if (isMounted) setError(e.message || "FRONTEND: Request error.");
-        throw e;
+        //throw e;
       } finally {
         if (isMounted) setIsLoading(false);
       }
