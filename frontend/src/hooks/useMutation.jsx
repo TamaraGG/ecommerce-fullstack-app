@@ -16,7 +16,7 @@ function useMutation(mutationFunction) {
       setData(result);
       return result;
     } catch (e) {
-      setError(e.message || "Request error.");
+      setError(e.message || "FRONTEND: Request error.");
       throw e;
     } finally {
       setIsMutating(false);
