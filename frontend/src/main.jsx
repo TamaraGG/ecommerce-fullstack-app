@@ -6,7 +6,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "./components/layouts/MainLayout.jsx";
 import CartProvider from "./context/CartProvider.jsx";
 import CartPage from "./pages/CartPage.jsx";
-import SortedPaginatedProductsListPage from "./pages/SortedPaginatedProductsListPage.jsx";
 import SearchPage from "./pages/SearchPage.jsx";
 import CategoryPage from "./pages/CategoryPage.jsx";
 
