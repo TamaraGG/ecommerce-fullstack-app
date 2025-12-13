@@ -1,8 +1,7 @@
 package com.example.e_commerce_backend.services;
 
-import com.example.e_commerce_backend.dtos.CategoryStatsDto;
-import com.example.e_commerce_backend.dtos.CreateReviewRequestDto;
-import com.example.e_commerce_backend.dtos.ReviewDto;
+import com.example.e_commerce_backend.dtos.review.CreateReviewRequestDto;
+import com.example.e_commerce_backend.dtos.review.ReviewDto;
 import com.example.e_commerce_backend.exceptions.ResourceNotFoundException;
 import com.example.e_commerce_backend.mappers.ReviewMapper;
 import com.example.e_commerce_backend.models.Review;
@@ -31,9 +30,6 @@ public class ReviewServiceImpl implements ReviewService {
         if (!productService.existsById(request.getProductId())) {
             throw new ResourceNotFoundException(request.getProductId() + " not found");
         }
-//        Optional.ofNullable(request.getProductId())
-//                .filter(productService::ifExistsById)
-//                .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
         Review newReview = Review.builder()
                 .productId(request.getProductId())
