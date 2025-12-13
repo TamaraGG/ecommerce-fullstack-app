@@ -7,6 +7,7 @@ import com.example.e_commerce_backend.models.Order;
 public class OrderMapper {
     public static OrderDto toOrderDto(Order order) {
         return OrderDto.builder()
+                .id(order.getId())
                 .items(order.getItems())
                 .total(order.getTotal())
                 .createdAt(order.getCreatedAt())

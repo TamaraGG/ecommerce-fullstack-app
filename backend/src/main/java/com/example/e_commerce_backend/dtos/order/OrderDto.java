@@ -7,7 +7,8 @@ import java.util.List;
 
 //what to return for GET order request
 @Builder
-public record OrderDto(CustomerDto customer,
+public record OrderDto(String id,
+                       CustomerDto customer,
                        Instant createdAt,
                        BigDecimal total,
                        List<OrderItemDto> items) {

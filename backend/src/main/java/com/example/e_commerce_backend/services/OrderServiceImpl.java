@@ -64,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
         order.setAddress(request.getCustomer().getAddress());
         order.setStatus("NEW");
 
-        orderRepository.save(order);
-        return OrderMapper.toOrderDto(order);
+        Order savedOrder = orderRepository.save(order);
+        return OrderMapper.toOrderDto(savedOrder);
     }
 }
