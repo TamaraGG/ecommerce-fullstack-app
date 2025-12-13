@@ -10,15 +10,14 @@ function ProductSmallCard({ product }) {
     <>
       <div>
         <Link to={link}>
-          <h4>{product?.name || "Product Name"}</h4>
+          <h4>{product?.name || "(Product Name)"}</h4>
         </Link>
         <img src={productImage} alt="" width="100px" />
-        <p>price: {product?.price || "unknown"}</p>
-        <p>in stock: {product?.quantity || "unknown"}</p>
+        <p>price: {product?.price.toFixed(2) ?? "unknown"}</p>
+        <p>in stock: {product?.quantity ?? "unknown"}</p>
         <p>
-          rating:{" "}
-          {product?.averageRating ||
-            `${product?.averageRating === 0 ? 0 : "no ratings"}`}
+          rating: {product?.averageRating ?? "no ratings"} (reviews:{" "}
+          {product?.reviewCount ?? "no reviews"})
         </p>
         <AddToCartButton product={product} />
       </div>

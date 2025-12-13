@@ -10,13 +10,13 @@ function ProductCard({ product }) {
         <div>
           <img src={productImage} alt="" width="200px" />
           <h1>{product?.name || "(Product Name)"}</h1>
-          <h2>{product?.price.toFixed(2) || "unknown"}</h2>
+          <h2>{product?.price.toFixed(2) ?? "unknown"}</h2>
           <p>Category: {product?.category || "unknown"}</p>
           <p>Description: {product?.description || "No description"}</p>
-          <p>In stock: {product?.quantity || "unknown"}</p>
+          <p>In stock: {product?.quantity ?? "unknown"}</p>
           <p>
-            Rating:{" "}
-            {product?.averageRating.toFixed(2) + " / 5.00" || "No ratings"}
+            rating: {product?.averageRating ?? "no ratings"} (reviews:{" "}
+            {product?.reviewCount ?? "no reviews"})
           </p>
 
           {product.specs && (
