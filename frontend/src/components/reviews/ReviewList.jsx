@@ -10,7 +10,7 @@ const SORTING_OPTIONS = ["rating", "date", "author", "comment"];
 
 function ReviewsList({ productId }) {
   const [page, setPage] = useState(1);
-  const [sort, setSort] = useState(SORTING_OPTIONS[0].value);
+  const [sort, setSort] = useState(SORTING_OPTIONS[0]);
   const size = 5;
 
   const [refreshTrigger, setRefreshTrigger] = useState(0);
@@ -57,13 +57,13 @@ function ReviewsList({ productId }) {
       {!isLoading && !error && (
         <>
           <ReviewsListView reviews={reviews} />
-          <PaginationControls
-            currentPage={page}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
         </>
       )}
+      <PaginationControls
+        currentPage={page}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 }
