@@ -1,6 +1,6 @@
 package com.example.e_commerce_backend.mappers;
 
-import com.example.e_commerce_backend.dtos.ReviewDto;
+import com.example.e_commerce_backend.dtos.review.ReviewDto;
 import com.example.e_commerce_backend.models.Review;
 
 public class ReviewMapper {

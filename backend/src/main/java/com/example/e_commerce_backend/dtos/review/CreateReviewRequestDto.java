@@ -1,4 +1,4 @@
-package com.example.e_commerce_backend.dtos;
+package com.example.e_commerce_backend.dtos.review;
 
 import jakarta.validation.constraints.*;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.Data;
 public class CreateReviewRequestDto {
     @NotBlank(message = "Product is null")
     String productId;
-    @NotBlank(message = "Author is null")
+    @NotBlank(message = "Author is null") @Size(min = 2, max = 50)
     String author;
     @NotNull(message = "Rating is null")
     @Min(1)

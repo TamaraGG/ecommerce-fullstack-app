@@ -5,11 +5,25 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - SPRING_MONGODB_URI=mongodb://mongodb:27017/appDB
+      - SPRING_MONGODB_URI=mongodb://root:rootpassword@mongodb:27017/appDB?authSource=admin&replicaSet=rs0
     depends_on:
-      - mongodb
+      mongodb:
+        condition: service_healthy
 
   mongodb:
-    image: mongo:8.2
+    image: bitnami/mongodb:latest
+    container_name: backend-mongodb-1
+    environment:
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_REPLICA_SET_NAME=rs0
+      - MONGODB_REPLICA_SET_KEY=replicaSetKey
+      - MONGODB_ROOT_PASSWORD=rootpassword
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb
     ports:
      - "27017:27017"
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 10s

@@ -1,7 +1,7 @@
 package com.example.e_commerce_backend.services.interfaces;
 
-import com.example.e_commerce_backend.dtos.CreateReviewRequestDto;
-import com.example.e_commerce_backend.dtos.ReviewDto;
+import com.example.e_commerce_backend.dtos.review.CreateReviewRequestDto;
+import com.example.e_commerce_backend.dtos.review.ReviewDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

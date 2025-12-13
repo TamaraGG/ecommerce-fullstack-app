@@ -1,4 +1,4 @@
-package com.example.e_commerce_backend.dtos;
+package com.example.e_commerce_backend.dtos.product;
 
 
 import lombok.Builder;
