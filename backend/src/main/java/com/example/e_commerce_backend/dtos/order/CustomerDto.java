@@ -17,6 +17,9 @@ public class CustomerDto {
     @NotBlank
     String email;
 
+    @NotBlank @Size(min = 6, max = 13)
+    String phone;
+
     @NotBlank @Size(min = 2, max = 100)
     String address;
 }
