@@ -8,6 +8,7 @@ import CartProvider from "./context/CartProvider.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import SearchPage from "./pages/SearchPage.jsx";
 import CategoryPage from "./pages/CategoryPage.jsx";
+import NotFoundPage from "./pages/NotFoundPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -34,12 +35,10 @@ const router = createBrowserRouter([
         path: "search",
         element: <SearchPage />,
       },
-      // 5. Маршрут 404 (Необязательно, но полезно):
-      // Добавьте этот маршрут в MainLayout, если он должен иметь шапку/подвал.
-      // {
-      //   path: "*",
-      //   element: <NotFoundPage />,
-      // },
+      {
+        path: "*",
+        element: <NotFoundPage />,
+      },
     ],
   },
 ]);
