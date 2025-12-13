@@ -3,6 +3,7 @@ import useFetch from "../hooks/useFetch";
 import ProductSmallCard from "./ProductSmallCard";
 import PaginationControls from "./controls/PaginationControls";
 import SortControls from "./controls/SortControls";
+import { useCallback } from "react";
 
 const SORTING_OPTIONS = ["price", "rating", "name", "reviews"];
 
@@ -26,28 +27,29 @@ function ProductList({
     ...dependencies,
   ]);
 
-  const handleSortChange = (newSort) => {
-    const newParams = new URLSearchParams(searchParams);
-    newParams.set("sort", newSort);
-    newParams.set("page", 1);
-    setSearchParams(newParams);
-  };
+  const handleSortChange = useCallback(
+    (newSort) => {
+      const newParams = new URLSearchParams(searchParams);
+      newParams.set("sort", newSort);
+      newParams.set("page", 1);
+      setSearchParams(newParams);
+    },
+    [searchParams, setSearchParams]
+  );
 
-  const handlePageChange = (newPage) => {
-    const newParams = new URLSearchParams(searchParams);
-    newParams.set("page", newPage);
-    setSearchParams(newParams);
-  };
+  const handlePageChange = useCallback(
+    (newPage) => {
+      const newParams = new URLSearchParams(searchParams);
+      newParams.set("page", newPage);
+      setSearchParams(newParams);
+    },
+    [searchParams, setSearchParams]
+  );
 
   const products = data?.content || [];
   const totalPages = data?.page?.totalPages || 1;
 
-  if (isLoading) return <p>Загрузка...</p>;
-  if (error)
-    return (
-      <p>ERROR: {error?.message || "FRONTEND: Error while loading products"}</p>
-    );
-  if (!products.length) return <p>{emptyMessage}</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div>
@@ -57,19 +59,27 @@ function ProductList({
         sortingOptions={SORTING_OPTIONS}
       />
 
-      <ul>
-        {products.map((product) => (
-          <li key={product.id}>
-            <ProductSmallCard product={product} />
-          </li>
-        ))}
-      </ul>
+      {isLoading ? (
+        <p>Загрузка...</p>
+      ) : products.length === 0 ? (
+        <p>{emptyMessage}</p>
+      ) : (
+        <ul>
+          {products.map((product) => (
+            <li key={product.id}>
+              <ProductSmallCard product={product} />
+            </li>
+          ))}
+        </ul>
+      )}
 
-      <PaginationControls
-        currentPage={page}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+      {!isLoading && products.length > 0 && (
+        <PaginationControls
+          currentPage={page}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      )}
     </div>
   );
 }
