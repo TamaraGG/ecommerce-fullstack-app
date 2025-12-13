@@ -36,7 +36,6 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.createProduct(productRequestDto));
     }
 
-    // /api/products/?category={category}&sort={sort}&page={page}&size={size}
     @GetMapping
     ResponseEntity<Page<ProductDto>> getProducts(@RequestParam(required = false) String category,
                                                  @PageableDefault(size = 10) Pageable pageable) {
