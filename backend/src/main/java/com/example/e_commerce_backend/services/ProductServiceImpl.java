@@ -12,7 +12,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
         return ProductMapper.toProductDto(retrievedProduct);
     }
 
-    @Override @Transactional
+    @Override @Transactional @CacheEvict(value = "categories", allEntries = true)
     public ProductDto createProduct(CreateProductRequestDto request) {
         Objects.requireNonNull(request, "Product name must not be null");
         Product newProduct = Product.builder()
@@ -46,7 +48,6 @@ public class ProductServiceImpl implements ProductService {
                 .quantity(request.getQuantity())
                 .build();
         Product savedProduct = productRepository.save(newProduct);
-        refreshCategories(); //TODO: not sure this is good
         return ProductMapper.toProductDto(savedProduct);
     }
 
@@ -89,13 +90,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<ProductDto> searchProductsByPattern(String pattern, Pageable pageable) {
-        TextCriteria textCriteria = TextCriteria.forDefaultLanguage().matching(pattern);
-        Page<Product> productPage = productRepository.findAllBy(textCriteria,pageable);
-        return productPage.map(ProductMapper::toProductDto);
-    }
-
-    @CacheEvict(value = "categories", allEntries = true)
-    public void refreshCategories() {
+        Page<Product> products = productRepository.searchByText(pattern, pageable);
+        return products.map(ProductMapper::toProductDto);
     }
 
 

@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.data.mongodb.repository.Aggregation;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
 
@@ -39,5 +40,6 @@ public interface ProductRepository extends MongoRepository<Product,String> {
     })
     List<CategoryStatsDto> findAllCategories();
 
-    Page<Product> findAllBy(TextCriteria criteria, Pageable pageable);
+    @Query(value = "{ '$text': { '$search': ?0 } }", sort = "{ 'score': { '$meta': 'textScore' } }")
+    Page<Product> searchByText(String text, Pageable pageable);
 }
