@@ -9,8 +9,10 @@ import com.example.e_commerce_backend.repos.ReviewRepository;
 import com.example.e_commerce_backend.services.interfaces.ProductService;
 import com.example.e_commerce_backend.services.interfaces.ReviewService;
 import lombok.AllArgsConstructor;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.resilience.annotation.Retryable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +26,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 
 
-    @Override @Transactional
+    @Override @Transactional @Retryable(value = OptimisticLockingFailureException.class, maxRetries = 3)
     public ReviewDto createReview(CreateReviewRequestDto request) {
         Objects.requireNonNull(request, "request is null");
         if (!productService.existsById(request.getProductId())) {

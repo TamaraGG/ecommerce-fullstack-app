@@ -12,8 +12,10 @@ import com.example.e_commerce_backend.services.interfaces.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.resilience.annotation.Retryable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
         return ProductMapper.toProductDto(retrievedProduct);
     }
 
-    @Override @Transactional @CacheEvict(value = "categories", allEntries = true)
+    @Override @CacheEvict(value = "categories", allEntries = true)
     public ProductDto createProduct(CreateProductRequestDto request) {
         Objects.requireNonNull(request, "Product name must not be null");
         Product newProduct = Product.builder()
@@ -61,7 +63,7 @@ public class ProductServiceImpl implements ProductService {
 
 
 
-    @Override
+    @Override @Transactional @Retryable(value = OptimisticLockingFailureException.class, maxRetries = 3)
     public void updateProductRating(String productId, Integer rating) {
         Product pToUpdate = productRepository.findById(productId)
                 .orElseThrow(()-> new ResourceNotFoundException("Product not found"));
