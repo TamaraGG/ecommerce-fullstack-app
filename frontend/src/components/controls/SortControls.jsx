@@ -5,7 +5,6 @@ function SortControls({ currentSort, onSortChange, sortingOptions }) {
     value: `${currentSort ? currentSort.split(",", 2)[0] : sortingOptions[0]}`,
     direction: `${currentSort ? currentSort.split(",", 2)[1] : "asc"}`,
   });
-  console.log(selectedSort, "---", currentSort);
 
   function handleChange(event) {
     setSelectedSort({
