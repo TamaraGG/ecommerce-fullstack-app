@@ -1,5 +1,13 @@
 package com.example.e_commerce_backend.dtos.order;
 
+import lombok.Builder;
+
+import java.math.BigDecimal;
+
 //Dto for response
-public record OrderItemDto(String productId, String name, int quantity, double price) {
+@Builder
+public record OrderItemDto(String productId,
+                           String name,
+                           int quantity,
+                           BigDecimal price) {
 }
