@@ -10,7 +10,10 @@ export async function addOrder(order) {
   });
 
   if (!response.ok) {
-    throw new Error(`BACKEND: ${response.status} - ${response.message}`);
+    const errorData = await response.json();
+    const errorMessage =
+      `${errorData.message}. ${errorData.details}` || response.statusText;
+    throw new Error(`BACKEND: ${errorMessage}`);
   }
 
   const data = await response.json();

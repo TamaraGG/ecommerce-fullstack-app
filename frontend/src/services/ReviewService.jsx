@@ -10,7 +10,10 @@ export async function getReview(id) {
   const response = await fetch(id ? `${URL}?productId=${id}` : ``);
 
   if (!response.ok) {
-    throw new Error(`BACKEND: ${response.status} - ${response.message}`);
+    const errorData = await response.json();
+    const errorMessage =
+      `${errorData.message}. ${errorData.details}` || response.statusText;
+    throw new Error(`BACKEND: ${errorMessage}`);
   }
   const data = await response.json();
   return data;
@@ -32,7 +35,10 @@ export async function getProductReviews(
   );
 
   if (!response.ok) {
-    throw new Error(`BACKEND: ${response.status} - ${response.message}`);
+    const errorData = await response.json();
+    const errorMessage =
+      `${errorData.message}. ${errorData.details}` || response.statusText;
+    throw new Error(`BACKEND: ${errorMessage}`);
   }
   const data = await response.json();
   return data;
@@ -48,7 +54,10 @@ export async function addReview(review) {
   });
 
   if (!response.ok) {
-    throw new Error(`BACKEND: ${response.status} - ${response.message}`);
+    const errorData = await response.json();
+    const errorMessage =
+      `${errorData.message}. ${errorData.details}` || response.statusText;
+    throw new Error(`BACKEND: ${errorMessage}`);
   }
 
   const data = await response.json();
