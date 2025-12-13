@@ -5,7 +5,7 @@ import PaginationControls from "./controls/PaginationControls";
 import SortControls from "./controls/SortControls";
 import { useCallback } from "react";
 
-const SORTING_OPTIONS = ["price", "rating", "name", "reviews"];
+const SORTING_OPTIONS = ["price", "averageRating", "name", "reviewCount"];
 
 function ProductList({
   fetchProductsFn,

@@ -6,7 +6,7 @@ import ReviewsListView from "./ReviewsListView";
 import SortControls from "../controls/SortControls";
 import AddReviewForm from "./AddReviewForm";
 
-const SORTING_OPTIONS = ["rating", "date", "author", "comment"];
+const SORTING_OPTIONS = ["rating", "createdAt", "author", "comment"];
 
 function ReviewsList({ productId }) {
   const [page, setPage] = useState(1);
