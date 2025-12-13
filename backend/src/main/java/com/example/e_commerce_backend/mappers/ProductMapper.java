@@ -1,6 +1,6 @@
 package com.example.e_commerce_backend.mappers;
 
-import com.example.e_commerce_backend.dtos.ProductDto;
+import com.example.e_commerce_backend.dtos.product.ProductDto;
 import com.example.e_commerce_backend.models.Product;
 
 public class ProductMapper {
