@@ -1,10 +1,9 @@
 package com.example.e_commerce_backend.repos;
 
-import com.example.e_commerce_backend.dtos.CategoryStatsDto;
+import com.example.e_commerce_backend.dtos.product.CategoryStatsDto;
 import com.example.e_commerce_backend.models.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.data.mongodb.repository.Aggregation;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
