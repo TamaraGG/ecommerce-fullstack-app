@@ -32,17 +32,13 @@ export async function getSortedPaginatedProducts(
 
   // in this case it will be just not found page
 
-  const response = await fetch(
-    URL +
-      url +
-      `?` +
-      String(filterParamName) +
-      `=` +
-      filter +
-      `${sort ? `&sort=` + sort : ``}` +
-      `${page ? `&page=${page - 1}` : ``}` +
-      `${size ? `&size=` + size : ``}`
-  );
+  const params = new URLSearchParams();
+  params.append(filterParamName, filter);
+  if (sort) params.append("sort", sort);
+  if (page) params.append("page", page - 1);
+  if (size) params.append("size", size);
+
+  const response = await fetch(`${URL}${url}?${params.toString()}`);
 
   if (!response.ok) {
     const errorData = await response.json();
