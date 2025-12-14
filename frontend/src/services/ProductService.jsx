@@ -51,7 +51,9 @@ export async function getSortedPaginatedProducts(
 }
 
 export async function getCategories() {
+  console.log(URL + `/categories`);
   const response = await fetch(URL + `/categories`);
+  console.log(response);
 
   if (!response.ok) {
     const errorData = await response.json();
@@ -60,6 +62,7 @@ export async function getCategories() {
     throw new Error(`BACKEND: ${errorMessage}`);
   }
   const data = await response.json();
+
   return data;
 }
 

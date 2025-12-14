@@ -50,7 +50,7 @@ function ProductList({
   const products = data?.content || [];
   const totalPages = data?.page?.totalPages || 1;
 
-  if (error) return <p>Error: {error.message}</p>;
+  if (error) return <p className={styles.error}>Error: {error.message}</p>;
 
   return (
     <div className={styles.container}>

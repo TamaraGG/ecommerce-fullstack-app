@@ -56,7 +56,9 @@ function CartPage() {
   if (isOrderSuccess) {
     return (
       <div className={styles.container}>
-        <h1 className={styles.title}>Order created!</h1>
+        <h1 className={styles.message}>
+          Order created! Our manager will contact you later via provided e-mail.
+        </h1>
         <div style={{ textAlign: "center", marginTop: "20px" }}>
           <p
             className={styles.message}
