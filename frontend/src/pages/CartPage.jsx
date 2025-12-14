@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../hooks/useCart";
 import ProductList from "../components/ProductList";
@@ -7,6 +7,8 @@ import styles from "../styles/index.module.css";
 
 function CartPage() {
   const { cartItems, totalItems } = useCart();
+
+  const [isOrderSuccess, setIsOrderSuccess] = useState(false);
 
   const totalPrice = cartItems.reduce(
     (acc, item) => acc + item.product.price * item.quantity,
@@ -51,6 +53,23 @@ function CartPage() {
     [cartItems]
   );
 
+  if (isOrderSuccess) {
+    return (
+      <div className={styles.container}>
+        <h1 className={styles.title}>Order created!</h1>
+        <div style={{ textAlign: "center", marginTop: "20px" }}>
+          <p
+            className={styles.message}
+            style={{ fontSize: "1.2rem", color: "green" }}
+          ></p>
+          <div style={{ marginTop: "20px" }}>
+            <Link to="/">Go to main page</Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (totalItems === 0) {
     return (
       <div>
@@ -74,7 +93,7 @@ function CartPage() {
         emptyMessage="Cart is empty."
       />
       <div className={styles.addOrderForm}>
-        <AddOrderForm />
+        <AddOrderForm onSuccess={() => setIsOrderSuccess(true)} />
       </div>
     </div>
   );

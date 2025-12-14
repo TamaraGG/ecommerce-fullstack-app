@@ -13,7 +13,7 @@ function Header() {
         <div className={styles.container}>
           <div className={styles.logoWraapper}>
             <Link to="/" className={styles.logoLink}>
-              <img src="/logo.png" alt="Logo" className={styles.logoImg} />
+              <span className={styles.logoImg}>LOGO</span>
             </Link>
           </div>
 
