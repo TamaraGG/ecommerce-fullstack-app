@@ -26,19 +26,19 @@ function ReviewsList({ productId }) {
     refreshTrigger,
   ]);
 
-  const handleSortChange = (newSort) => {
+  const handleSortChange = useCallback((newSort) => {
     setSort(newSort);
     setPage(1);
-  };
+  }, []);
 
-  const handlePageChange = (newPage) => {
+  const handlePageChange = useCallback((newPage) => {
     setPage(newPage);
-  };
+  }, []);
 
-  const handleReviewAdded = () => {
+  const handleReviewAdded = useCallback(() => {
     setRefreshTrigger((prev) => prev + 1);
     setPage(1);
-  };
+  }, []);
 
   const reviews = data?.content || [];
   const totalPages = data?.page?.totalPages || 1;
