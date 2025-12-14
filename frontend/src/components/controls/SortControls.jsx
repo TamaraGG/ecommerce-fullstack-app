@@ -2,33 +2,47 @@ import React, { useEffect, useState, memo } from "react";
 import styles from "../../styles/index.module.css";
 
 function SortControls({ currentSort, onSortChange, sortingOptions }) {
-  const [selectedSort, setSelectedSort] = useState({
-    value: `${currentSort ? currentSort.split(",", 2)[0] : sortingOptions[0]}`,
-    direction: `${currentSort ? currentSort.split(",", 2)[1] : "asc"}`,
-  });
+  // const [selectedSort, setSelectedSort] = useState({
+  //   value: `${currentSort ? currentSort.split(",", 2)[0] : sortingOptions[0]}`,
+  //   direction: `${currentSort ? currentSort.split(",", 2)[1] : "asc"}`,
+  // });
 
-  function handleChange(event) {
-    setSelectedSort({
-      ...selectedSort,
-      direction: event.target.value,
-    });
-  }
-  function handleSelectChange(event) {
-    setSelectedSort({
-      ...selectedSort,
-      value: event.target.value,
-    });
-  }
+  const [currentField, currentDirection] = currentSort
+    ? currentSort.split(",")
+    : [sortingOptions[0], "asc"];
 
-  useEffect(() => {
-    if (currentSort) {
-      const [val, dir] = currentSort.split(",", 2);
-      setSelectedSort({
-        value: val,
-        direction: dir || "asc",
-      });
-    }
-  }, [currentSort]);
+  const handleFieldChange = (event) => {
+    const newField = event.target.value;
+    onSortChange(`${newField},${currentDirection}`);
+  };
+
+  const handleDirectionChange = (event) => {
+    const newDirection = event.target.value;
+    onSortChange(`${currentField},${newDirection}`);
+  };
+
+  // function handleChange(event) {
+  //   setSelectedSort({
+  //     ...selectedSort,
+  //     direction: event.target.value,
+  //   });
+  // }
+  // function handleSelectChange(event) {
+  //   setSelectedSort({
+  //     ...selectedSort,
+  //     value: event.target.value,
+  //   });
+  // }
+
+  // useEffect(() => {
+  //   if (currentSort) {
+  //     const [val, dir] = currentSort.split(",", 2);
+  //     setSelectedSort({
+  //       value: val,
+  //       direction: dir || "asc",
+  //     });
+  //   }
+  // }, [currentSort]);
 
   return (
     <div className={styles.container}>
@@ -40,8 +54,8 @@ function SortControls({ currentSort, onSortChange, sortingOptions }) {
           <select
             id="value"
             name="value"
-            onChange={handleSelectChange}
-            value={selectedSort.value}
+            onChange={handleFieldChange}
+            value={currentField}
             className={styles.select}
           >
             {sortingOptions.map((option) => (
@@ -58,8 +72,8 @@ function SortControls({ currentSort, onSortChange, sortingOptions }) {
               type="radio"
               name="direction"
               value="asc"
-              checked={selectedSort.direction === "asc"}
-              onChange={handleChange}
+              checked={currentDirection === "asc"}
+              onChange={handleDirectionChange}
               className={styles.radioInput}
             />
             <span className={styles.radioText}>asc</span>
@@ -70,14 +84,14 @@ function SortControls({ currentSort, onSortChange, sortingOptions }) {
               type="radio"
               name="direction"
               value="desc"
-              checked={selectedSort.direction === "desc"}
-              onChange={handleChange}
+              checked={currentDirection === "desc"}
+              onChange={handleDirectionChange}
               className={styles.radioInput}
             />
             <span className={styles.radioText}>desc</span>
           </label>
         </div>
-        <button
+        {/* <button
           type="button"
           onClick={() =>
             onSortChange(`${selectedSort.value},${selectedSort.direction}`)
@@ -85,7 +99,7 @@ function SortControls({ currentSort, onSortChange, sortingOptions }) {
           className={styles.button}
         >
           Sort
-        </button>
+        </button> */}
       </form>
     </div>
   );

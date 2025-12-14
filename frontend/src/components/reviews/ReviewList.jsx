@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import useFetch from "../../hooks/useFetch";
 import { getProductReviews } from "../../services/ReviewService";
 import PaginationControls from "../controls/PaginationControls";
@@ -8,6 +8,7 @@ import AddReviewForm from "./AddReviewForm";
 import styles from "../../styles/index.module.css";
 
 const SORTING_OPTIONS = ["rating", "createdAt", "author", "comment"];
+const EMPTY_REVIEWS = [];
 
 function ReviewsList({ productId }) {
   const [page, setPage] = useState(1);
@@ -40,7 +41,7 @@ function ReviewsList({ productId }) {
     setPage(1);
   }, []);
 
-  const reviews = data?.content || [];
+  const reviews = data?.content || EMPTY_REVIEWS;
   const totalPages = data?.page?.totalPages || 1;
 
   return (

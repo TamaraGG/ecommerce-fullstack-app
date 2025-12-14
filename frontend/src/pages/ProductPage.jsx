@@ -21,7 +21,7 @@ function ProductPage() {
         )}
         {error && (
           <p className={styles.error}>
-            ERROR: {error?.message || "Error while loading."}
+            ERROR: {error || "Error while loading."}
           </p>
         )}
 

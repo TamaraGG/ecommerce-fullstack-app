@@ -1,5 +1,6 @@
 import ReviewItem from "./ReviewItem";
 import styles from "../../styles/index.module.css";
+import { memo } from "react";
 
 function ReviewsListView({ reviews }) {
   if (!reviews || reviews.length === 0) {
@@ -18,4 +19,4 @@ function ReviewsListView({ reviews }) {
     </div>
   );
 }
-export default ReviewsListView;
+export default memo(ReviewsListView);

@@ -54,12 +54,14 @@ function ProductList({
 
   return (
     <div className={styles.container}>
-      <SortControls
-        currentSort={sort}
-        onSortChange={handleSortChange}
-        sortingOptions={SORTING_OPTIONS}
-        className={styles.sortControls}
-      />
+      <div className={styles.sortWrapper}>
+        <SortControls
+          currentSort={sort}
+          onSortChange={handleSortChange}
+          sortingOptions={SORTING_OPTIONS}
+          className={styles.sortControls}
+        />
+      </div>
 
       {isLoading ? (
         <p>Loading...</p>
@@ -76,11 +78,13 @@ function ProductList({
       )}
 
       {!isLoading && products.length > 0 && (
-        <PaginationControls
-          currentPage={page}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
+        <div className={styles.paginationWrappere}>
+          <PaginationControls
+            currentPage={page}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        </div>
       )}
     </div>
   );

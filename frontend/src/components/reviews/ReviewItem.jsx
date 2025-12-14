@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styles from "../../styles/index.module.css";
 
 function ReviewItem({ review }) {
@@ -32,4 +33,4 @@ function ReviewItem({ review }) {
     </div>
   );
 }
-export default ReviewItem;
+export default memo(ReviewItem);
