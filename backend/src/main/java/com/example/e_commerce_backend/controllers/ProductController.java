@@ -30,7 +30,6 @@ public class ProductController {
     }
 
     @PostMapping
-        //TODO: нужен глобальный обработчик, с ним круто выводится все поля где неверная инфа введена
     ResponseEntity<ProductDto> createProduct(@RequestBody @Validated CreateProductRequestDto productRequestDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.createProduct(productRequestDto));
     }
