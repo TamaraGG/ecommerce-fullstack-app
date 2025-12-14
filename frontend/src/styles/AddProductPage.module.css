@@ -5,10 +5,22 @@
   flex-direction: column;
   gap: 3rem;
 
-  background-color: #080808;
+  background-color: #000000;
   border: 1px solid #333;
   padding: 3rem;
   border-radius: 4px;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  letter-spacing: -1px;
+  line-height: 1;
+  border-bottom: 1px solid #222;
+  padding-bottom: 2rem;
 }
 
 .section {
@@ -27,14 +39,15 @@
 .sectionTitle {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #fff;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
   display: block;
   letter-spacing: 1px;
+  border-left: 3px solid #9d4edd;
+  padding-left: 10px;
 }
 
-/* Ряды полей */
 .row {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -47,7 +60,6 @@
   }
 }
 
-/* Подписи полей */
 .label {
   display: flex;
   flex-direction: column;
@@ -56,27 +68,27 @@
   color: #888;
   font-size: 0.85rem;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-/* Поля ввода (Inputs & Textarea) */
 .input,
 .textarea {
-  background-color: #000000;
+  background-color: #000;
   border: 1px solid #444;
-  border-radius: 2px; /* Квадратные */
+  border-radius: 2px;
   padding: 14px 16px;
-  color: #ffffff;
+  color: #fff;
   font-size: 1rem;
   font-family: inherit;
   outline: none;
-  transition: border-color 0.2s ease;
+  transition: all 0.2s ease;
   width: 100%;
   box-sizing: border-box;
 }
 
 .input:focus,
 .textarea:focus {
-  border-color: #ff007f; /* Розовый фокус */
+  border-color: #ff007f;
   box-shadow: 0 0 0 1px #ff007f;
 }
 
@@ -85,23 +97,22 @@
   resize: vertical;
 }
 
-/* --- Загрузка изображения --- */
 .imageUploadContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px dashed #444; /* Пунктирная рамка */
+  border: 2px dashed #333;
   padding: 2.5rem;
   border-radius: 4px;
-  background-color: #0b0b0b;
+  background-color: #050505;
   transition: all 0.2s;
   min-height: 200px;
 }
 
 .imageUploadContainer:hover {
-  border-color: #777;
-  background-color: #111;
+  border-color: #9d4edd;
+  background-color: #0a0a0a;
 }
 
 .fileInput {
@@ -110,27 +121,28 @@
 
 .fileLabel {
   background-color: transparent;
-  color: #ffffff;
+  color: #9d4edd;
   padding: 12px 24px;
-  border: 1px solid #fff;
+  border: 1px solid #9d4edd;
   border-radius: 2px;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   font-size: 0.9rem;
   transition: all 0.2s;
 }
 
 .fileLabel:hover {
-  background-color: #fff;
+  background-color: #9d4edd;
   color: #000;
 }
 
 .previewWrapper {
   margin-top: 1.5rem;
   border: 1px solid #333;
-  padding: 5px;
+  padding: 8px;
   background: #000;
+  border-radius: 2px;
 }
 
 .preview {
@@ -139,7 +151,6 @@
   display: block;
 }
 
-/* --- Секция Спецификаций --- */
 .specsHeader {
   display: flex;
   justify-content: space-between;
@@ -160,11 +171,10 @@
   align-items: center;
 }
 
-/* Кнопка + Add Spec */
 .addButton {
   background: transparent;
-  border: 1px solid #7b2cbf;
-  color: #7b2cbf;
+  border: 1px solid #fff;
+  color: #fff;
   padding: 8px 16px;
   border-radius: 2px;
   font-weight: 700;
@@ -175,19 +185,17 @@
 }
 
 .addButton:hover {
-  background-color: #7b2cbf;
-  color: #fff;
+  border-color: #9d4edd;
+  color: #9d4edd;
 }
 
-/* Кнопка удаления (Крестик) */
 .removeButton {
-  width: 44px; /* Больше, чтобы удобно нажимать */
-  height: 44px; /* Под высоту инпута */
+  width: 46px;
+  height: 46px;
   background: transparent;
   border: 1px solid #333;
   color: #666;
-  font-size: 1.5rem;
-  line-height: 1;
+  font-size: 1.2rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -199,69 +207,51 @@
 .removeButton:hover {
   border-color: #ff007f;
   color: #ff007f;
-  background-color: rgba(255, 0, 127, 0.1);
+  background-color: transparent;
+  transform: scale(1.05);
 }
 
-/* Заголовок упрощенный */
-.title {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 2rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  border-left: 5px solid #ff007f;
-  padding-left: 1rem;
-  line-height: 1;
-}
-
-/* --- НОРМАЛЬНАЯ КНОПКА --- */
 .submitButton {
   width: 100%;
-  padding: 16px;
+  padding: 18px;
   margin-top: 1.5rem;
 
-  /* Белая заливка, черный текст - классический "Primary" баттон в темной теме */
-  background-color: #ffffff;
-  color: #000000;
-  border: none; /* Убрали рамку, так как есть заливка */
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #fff;
 
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   cursor: pointer;
-  border-radius: 2px;
+  border-radius: 4px;
   transition: all 0.2s ease;
 }
 
 .submitButton:hover:not(:disabled) {
-  /* При наведении - фиолетовый */
-  background-color: #7b2cbf;
-  color: #ffffff;
-  box-shadow: 0 5px 15px rgba(123, 44, 191, 0.3);
+  background-color: #fff;
+  color: #000;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
 }
 
 .submitButton:disabled {
-  background-color: #333;
-  color: #777;
+  border-color: #333;
+  color: #555;
   cursor: not-allowed;
-  box-shadow: none;
 }
 
 .error {
-  color: #ff0050;
+  color: #ff007f;
   font-size: 0.85rem;
   font-weight: 700;
   text-transform: uppercase;
-
-  padding: 10px 15px;
-  border: 1px solid #ff0050;
-  background-color: rgba(255, 0, 80, 0.05);
-
+  padding: 12px 16px;
+  border: 1px solid #ff007f;
+  background-color: rgba(255, 0, 127, 0.05);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .error::before {
@@ -271,7 +261,7 @@
   justify-content: center;
   width: 20px;
   height: 20px;
-  background-color: #ff0050;
+  background-color: #ff007f;
   color: #000;
   font-weight: bold;
   border-radius: 50%;
@@ -283,21 +273,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 1.1rem;
   font-weight: 600;
-  color: #666;
+  color: #888;
   text-transform: uppercase;
   letter-spacing: 1px;
-}
-
-.title {
-  font-size: 3rem;
-  font-weight: 800;
-  color: #ffffff;
-  text-transform: uppercase;
-  margin-bottom: 2rem;
-  letter-spacing: -0.5px;
-  line-height: 1.1;
-  padding: 20px 20px 20px 20px;
 }

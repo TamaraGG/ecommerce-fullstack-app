@@ -1,39 +1,52 @@
 .container {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 3rem 0;
+  padding: 40px 0;
+  width: 100%;
 }
 
 .arrowButton,
 .button {
   width: 44px;
   height: 44px;
+  border-radius: 2px;
+  background: transparent;
   border: 1px solid #333;
-  background-color: transparent;
-  color: #666;
-  font-weight: 600;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.2s;
+  color: #888;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+
+  flex-shrink: 0;
 }
 
-.button:hover:not(:disabled),
-.arrowButton:hover:not(:disabled) {
-  border-color: #fff;
-  color: #fff;
+.arrowButton:hover:not(:disabled),
+.button:hover:not(:disabled):not(.active) {
+  border-color: #9d4edd;
+  color: #9d4edd;
+  transform: translateY(-2px);
 }
 
 .active {
-  border-color: #7b2cbf;
-  color: #7b2cbf;
-  background-color: rgba(123, 44, 191, 0.1);
+  border: 2px solid #fff;
+  color: #fff;
+  background: transparent;
+  cursor: default;
 }
 
 .arrowButton:disabled {
-  opacity: 0.2;
-  cursor: default;
+  border-color: #222;
+  color: #333;
+  cursor: not-allowed;
+  opacity: 0.5;
 }
