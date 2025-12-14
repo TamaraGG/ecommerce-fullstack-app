@@ -1,5 +1,5 @@
 import React, { useEffect, useState, memo } from "react";
-import styles from "../../styles/index.module.css";
+import styles from "../../styles/SortControls.module.css";
 
 function SortControls({ currentSort, onSortChange, sortingOptions }) {
   // const [selectedSort, setSelectedSort] = useState({
