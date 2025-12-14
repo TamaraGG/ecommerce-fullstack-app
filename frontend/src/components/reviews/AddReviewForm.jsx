@@ -6,8 +6,10 @@ function AddReviewForm({ productId, onSuccess }) {
   const [form, setForm] = useState({
     author: "",
     comment: "",
-    rating: 1,
+    rating: 5,
   });
+
+  const [hover, setHover] = useState(0);
 
   const {
     executeMutation,
@@ -39,56 +41,75 @@ function AddReviewForm({ productId, onSuccess }) {
   };
 
   return (
-    <div>
-      <h3>Leave a review:</h3>
+    <div className={styles.container}>
+      <h3 className={styles.heading}>Leave a review:</h3>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Name: <br />
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>
+            Name:
             <input
               type="text"
               name="author"
               value={form.author}
               onChange={handleChange}
+              className={styles.input}
+              placeholder="Your name"
             />
           </label>
         </div>
 
-        <div>
-          <p>Rating:</p>
-          {[1, 2, 3, 4, 5].map((number) => (
-            <label key={number} style={{ marginRight: "10px" }}>
-              {" "}
-              <input
-                type="radio"
-                name="rating"
-                value={number}
-                checked={number === form.rating}
-                onChange={handleChange}
-              />
-              {number}
-            </label>
-          ))}
+        <div className={styles.formGroup}>
+          <span className={styles.label}>Rating:</span>
+          <div className={styles.starContainer}>
+            {[1, 2, 3, 4, 5].map((starValue) => {
+              const isFilled = starValue <= (hover || form.rating);
+
+              return (
+                <label key={starValue} className={styles.starLabel}>
+                  <input
+                    type="radio"
+                    name="rating"
+                    value={starValue}
+                    onChange={handleChange}
+                    className={styles.hiddenRadio}
+                  />
+
+                  <span
+                    className={isFilled ? styles.starFilled : styles.starEmpty}
+                    onMouseEnter={() => setHover(starValue)}
+                    onMouseLeave={() => setHover(0)}
+                  >
+                    ★
+                  </span>
+                </label>
+              );
+            })}
+          </div>
         </div>
 
-        <div>
-          <label>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>
             Comment: <br />
             <textarea
               name="comment"
               value={form.comment}
               onChange={handleChange}
               rows="4"
-              cols="50"
+              className={styles.textarea}
+              placeholder="Write your comment..."
             />
           </label>
         </div>
 
-        {apiError && <div>{apiError}</div>}
+        {apiError && <div className={styles.error}>{apiError}</div>}
 
-        <button type="submit" disabled={isMutating}>
-          {isMutating ? "Отправка..." : "Submit Review"}
+        <button
+          type="submit"
+          disabled={isMutating}
+          className={styles.submitButton}
+        >
+          {isMutating ? "Submitting..." : "Submit Review"}
         </button>
       </form>
     </div>

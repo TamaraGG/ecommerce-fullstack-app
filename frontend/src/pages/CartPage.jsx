@@ -60,17 +60,21 @@ function CartPage() {
   }
 
   return (
-    <div>
-      <h2>Cart</h2>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Cart</h1>
 
-      <h3>Total price: {totalPrice.toFixed(2)} $</h3>
+      <span className={styles.price}>
+        Total price: {totalPrice.toFixed(2)} $
+      </span>
 
       <ProductList
         fetchProductsFn={fetchCartData}
         dependencies={[cartItems]}
         emptyMessage="Cart is empty."
       />
-      <AddOrderForm />
+      <div className={styles.addOrderForm}>
+        <AddOrderForm />
+      </div>
     </div>
   );
 }

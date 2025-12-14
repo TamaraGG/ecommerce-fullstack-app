@@ -6,27 +6,34 @@ function PaginationControls({ currentPage, totalPages, onPageChange }) {
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
-    <div>
+    <div className={styles.container}>
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
+        className={styles.arrowButton}
       >
         &laquo;
       </button>
 
-      {pageNumbers.map((number) => (
-        <button
-          key={number}
-          onClick={() => onPageChange(number)}
-          disabled={number === currentPage}
-        >
-          {number}
-        </button>
-      ))}
+      <div className={styles.numbers}>
+        {pageNumbers.map((number) => (
+          <button
+            key={number}
+            onClick={() => onPageChange(number)}
+            disabled={number === currentPage}
+            className={`${styles.button} ${
+              number === currentPage ? styles.active : ""
+            }`}
+          >
+            {number}
+          </button>
+        ))}
+      </div>
 
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
+        className={styles.arrowButton}
       >
         &raquo;
       </button>

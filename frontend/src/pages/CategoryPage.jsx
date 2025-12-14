@@ -16,8 +16,8 @@ function CategoryPage() {
   };
 
   return (
-    <div>
-      <h2>Category: {category}</h2>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Category: {category}</h1>
       <ProductList
         fetchProductsFn={fetchCategoryProducts}
         dependencies={[category]}

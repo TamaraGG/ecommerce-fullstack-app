@@ -13,16 +13,24 @@ function ProductPage() {
   const { data: product, isLoading, error } = useFetch(fetchData, [id]);
 
   return (
-    <div>
-      <div>
-        {isLoading && <p>Loading product details...</p>}
-        {error && <p>ERROR: {error?.message || "Error while loading."}</p>}
+    <div className={styles.container}>
+      <div className={styles.productSection}>
+        {isLoading && (
+          <p className={styles.message}>Loading product details...</p>
+        )}
+        {error && (
+          <p className={styles.error}>
+            ERROR: {error?.message || "Error while loading."}
+          </p>
+        )}
 
         {!isLoading && !error && product && <ProductCard product={product} />}
 
-        {!isLoading && !error && !product && <p>Product not found.</p>}
+        {!isLoading && !error && !product && (
+          <p className={styles.message}>Product not found.</p>
+        )}
       </div>
-      <div>
+      <div className={styles.reviewsSection}>
         <ReviewsList productId={id} />
       </div>
     </div>

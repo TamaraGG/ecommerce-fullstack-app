@@ -6,13 +6,15 @@ function ReviewsListView({ reviews }) {
   }
 
   return (
-    <ul>
-      {reviews.map((review) => (
-        <li key={review.id}>
-          <ReviewItem review={review} />
-        </li>
-      ))}
-    </ul>
+    <div className={styles.container}>
+      <ul className={styles.reviewsList}>
+        {reviews.map((review) => (
+          <li key={review.id}>
+            <ReviewItem review={review} />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 export default ReviewsListView;

@@ -9,7 +9,7 @@ import CartPage from "./pages/CartPage.jsx";
 import SearchPage from "./pages/SearchPage.jsx";
 import CategoryPage from "./pages/CategoryPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
-import "./index.css";
+import styles from "./styles/index.module.css";
 
 const router = createBrowserRouter([
   {

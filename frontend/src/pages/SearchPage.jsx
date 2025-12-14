@@ -18,8 +18,8 @@ function SearchPage() {
   if (!pattern) return <p>"Enter search request"</p>;
 
   return (
-    <div>
-      <h2>Search results: "{pattern}"</h2>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Search results: "{pattern}"</h1>
       <ProductList
         fetchProductsFn={fetchSearchResults}
         dependencies={[pattern]}

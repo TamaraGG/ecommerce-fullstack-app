@@ -8,18 +8,31 @@ function ProductSmallCard({ product }) {
 
   return (
     <>
-      <div>
+      <div className={styles.card}>
         <Link to={link}>
-          <h4>{product?.name || "(Product Name)"}</h4>
+          <div className={styles.imageWrapper}>
+            <img
+              src={productImage}
+              alt={product?.name}
+              className={styles.image}
+            />
+          </div>
+          <h4 className={styles.title}>{product?.name || "(Product Name)"}</h4>
+
+          <p className={styles.price}>
+            price: {product?.price.toFixed(2) ?? "unknown"}
+          </p>
+          <div className={styles.meta}>
+            <p>in stock: {product?.quantity ?? "unknown"}</p>
+            <p>
+              rating: {product?.averageRating ?? "no ratings"} (reviews:{" "}
+              {product?.reviewCount ?? "no reviews"})
+            </p>
+          </div>
         </Link>
-        <img src={productImage} alt="" width="100px" />
-        <p>price: {product?.price.toFixed(2) ?? "unknown"}</p>
-        <p>in stock: {product?.quantity ?? "unknown"}</p>
-        <p>
-          rating: {product?.averageRating ?? "no ratings"} (reviews:{" "}
-          {product?.reviewCount ?? "no reviews"})
-        </p>
-        <AddToCartButton product={product} />
+        <div className={styles.actions}>
+          <AddToCartButton product={product} />
+        </div>
       </div>
     </>
   );

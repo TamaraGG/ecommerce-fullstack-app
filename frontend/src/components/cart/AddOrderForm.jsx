@@ -67,47 +67,55 @@ function AddOrderForm({ onSuccess }) {
   };
 
   return (
-    <div>
-      <h3>Creating an order:</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
+    <div className={styles.container}>
+      <h3 className={styles.title}>Creating an order:</h3>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>
             Name:
-            <br />
             <input
               type="text"
               name="name"
               value={form.name}
               onChange={handleChange}
+              className={styles.input}
+              placeholder="Full Name"
+              required
             />
           </label>
         </div>
 
-        <div>
-          <label>
-            Email: <br />
+        <div className={styles.formGroup}>
+          <label className={styles.label}>
+            Email:
             <input
               type="email"
               name="email"
               value={form.email}
               onChange={handleChange}
+              className={styles.input}
+              placeholder="example@mail.com"
+              required
             />
           </label>
         </div>
 
-        <div style={{ marginBottom: "10px" }}>
-          <label>
-            Phone: <br />
+        <div className={styles.formGroup}>
+          <label className={styles.label}>
+            Phone:
             <input
               type="tel"
               name="phone"
               value={form.phone}
               onChange={handleChange}
+              className={styles.input}
+              placeholder="+1 234 567 8900"
+              required
             />
           </label>
         </div>
 
-        <div style={{ marginBottom: "10px" }}>
+        <div className={styles.formGroup}>
           <label>
             Address: <br />
             <input
@@ -115,13 +123,20 @@ function AddOrderForm({ onSuccess }) {
               name="address"
               value={form.address}
               onChange={handleChange}
+              className={styles.input}
+              placeholder="Shipping Address"
+              required
             />
           </label>
         </div>
 
-        {apiError && <div>{apiError}</div>}
+        {apiError && <p className={styles.error}>{apiError}</p>}
 
-        <button type="submit" disabled={isMutating || cartItems.length === 0}>
+        <button
+          type="submit"
+          disabled={isMutating || cartItems.length === 0}
+          className={styles.submitButton}
+        >
           {isMutating ? "Submitting..." : "Submit"}
         </button>
       </form>

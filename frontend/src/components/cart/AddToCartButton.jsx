@@ -27,28 +27,43 @@ function AddToCartButton({ product, quantity = 1 }) {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       {!isAdded ? (
-        <button onClick={handleInitialAdd} disabled={stockQuantity === 0}>
+        <button
+          onClick={handleInitialAdd}
+          disabled={stockQuantity === 0}
+          className={styles.mainButton}
+        >
           {stockQuantity === 0 ? "not in stock" : "add to cart"}
         </button>
       ) : (
-        <div>
-          <button onClick={handleDecrease}>-</button>
+        <div className={styles.controlsContainer}>
+          <div className={styles.counterGroup}>
+            <button
+              onClick={handleDecrease}
+              disabled={quantityInCart == 0}
+              className={styles.roundButton}
+            >
+              -
+            </button>
 
-          <label>{quantityInCart}</label>
+            <span className={styles.quantity}>{quantityInCart}</span>
 
-          <button
-            onClick={handleIncrease}
-            disabled={quantityInCart >= stockQuantity}
-          >
-            +
-          </button>
+            <button
+              onClick={handleIncrease}
+              disabled={quantityInCart >= stockQuantity}
+              className={styles.roundButton}
+            >
+              +
+            </button>
+          </div>
 
-          <Link to="/cart">to the cart</Link>
+          <Link to="/cart" className={styles.cartLink}>
+            To the cart
+          </Link>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

@@ -52,19 +52,20 @@ function ProductList({
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div>
+    <div className={styles.container}>
       <SortControls
         currentSort={sort}
         onSortChange={handleSortChange}
         sortingOptions={SORTING_OPTIONS}
+        className={styles.sortControls}
       />
 
       {isLoading ? (
-        <p>Загрузка...</p>
+        <p>Loading...</p>
       ) : products.length === 0 ? (
         <p>{emptyMessage}</p>
       ) : (
-        <ul>
+        <ul className={styles.cardsGrid}>
           {products.map((product) => (
             <li key={product.id}>
               <ProductSmallCard product={product} />

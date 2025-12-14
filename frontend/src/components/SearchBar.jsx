@@ -28,18 +28,22 @@ function SearchBar() {
   };
 
   return (
-    <div>
-      <label>
-        Search:
+    <div className={styles.container}>
+      <div className={styles.searchBox}>
         <input
           type="text"
           value={search}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           placeholder="Type to search..."
+          className={styles.input}
+          aria-label="Search products"
         />
-      </label>
-      <button onClick={handleSearch}>search</button>
+      </div>
+
+      <button onClick={handleSearch} className={styles.button}>
+        search
+      </button>
     </div>
   );
 }

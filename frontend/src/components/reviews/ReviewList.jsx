@@ -43,27 +43,39 @@ function ReviewsList({ productId }) {
   const totalPages = data?.page?.totalPages || 1;
 
   return (
-    <div>
-      <AddReviewForm productId={productId} onSuccess={handleReviewAdded} />
-      <h3>Reviews:</h3>
-      <SortControls
-        currentSort={sort}
-        onSortChange={handleSortChange}
-        sortingOptions={SORTING_OPTIONS}
-      />
-      {isLoading && <p>Loading reviews...</p>}
-      {error && <p>ERROR: {error.message}</p>}
+    <div className={styles.container}>
+      <div className={styles.addSection}>
+        <AddReviewForm productId={productId} onSuccess={handleReviewAdded} />
+      </div>
+
+      <div className={styles.listSection}>
+        <div className={styles.header}>
+          <h3 className={styles.title}>Reviews:</h3>
+          <div className={styles.sortWrapper}>
+            <SortControls
+              currentSort={sort}
+              onSortChange={handleSortChange}
+              sortingOptions={SORTING_OPTIONS}
+            />
+          </div>
+        </div>
+      </div>
+
+      {isLoading && <p className={styles.message}>Loading reviews...</p>}
+      {error && <p className={styles.error}>ERROR: {error.message}</p>}
 
       {!isLoading && !error && (
-        <>
+        <div className={styles.list}>
           <ReviewsListView reviews={reviews} />
-        </>
+        </div>
       )}
-      <PaginationControls
-        currentPage={page}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+      <div className={styles.pagination}>
+        <PaginationControls
+          currentPage={page}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      </div>
     </div>
   );
 }

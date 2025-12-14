@@ -7,12 +7,18 @@ function CategoryCard({ cat }) {
 
   return (
     <>
-      <div>
-        <Link to={link}>
-          <h4>{cat.category}</h4>
+      <div className={styles.card}>
+        <Link to={link} className={styles.link}>
+          <div className={styles.imageWrapper}>
+            <img src={catImage} alt={cat.category} className={styles.image} />
+          </div>
+
+          <div className={styles.content}>
+            <h4 className={styles.title}>{cat.category}</h4>
+          </div>
+
+          <p className={styles.info}>Number of products: {cat.count}</p>
         </Link>
-        <img src={catImage} alt="" width="75px" />
-        <p>Number of products: {cat.count}</p>
       </div>
     </>
   );
