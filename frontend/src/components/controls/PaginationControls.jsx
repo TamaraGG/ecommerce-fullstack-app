@@ -1,4 +1,5 @@
 import styles from "../../styles/index.module.css";
+import React, { memo } from "react";
 
 function PaginationControls({ currentPage, totalPages, onPageChange }) {
   // if (totalPages <= 1) {
@@ -43,4 +44,4 @@ function PaginationControls({ currentPage, totalPages, onPageChange }) {
   );
 }
 
-export default PaginationControls;
+export default memo(PaginationControls);

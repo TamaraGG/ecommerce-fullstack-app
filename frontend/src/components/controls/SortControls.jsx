@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import styles from "../../styles/index.module.css";
 
 function SortControls({ currentSort, onSortChange, sortingOptions }) {
@@ -91,4 +91,4 @@ function SortControls({ currentSort, onSortChange, sortingOptions }) {
   );
 }
 
-export default SortControls;
+export default memo(SortControls);

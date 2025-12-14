@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import { addReview } from "../../services/ReviewService";
 import useMutation from "../../hooks/useMutation";
 import styles from "../../styles/index.module.css";
@@ -117,4 +117,4 @@ function AddReviewForm({ productId, onSuccess }) {
   );
 }
 
-export default AddReviewForm;
+export default memo(AddReviewForm);
