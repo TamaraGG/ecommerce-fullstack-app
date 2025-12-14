@@ -98,6 +98,21 @@ function CartProvider({ children }) {
     }
   }, [cartItems]);
 
+  useEffect(() => {
+    const handleStorageChange = (event) => {
+      if (event.key === "Cart") {
+        console.log("Cart was changed in another tab so updating it...");
+        setCartItems(getInitialCart());
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
   return (
     <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
   );
