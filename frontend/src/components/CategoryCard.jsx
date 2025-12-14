@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import image from "../assets/default.png";
-import styles from "../styles/index.module.css";
+import styles from "../styles/CategoryCard.module.css";
 
 function CategoryCard({ cat }) {
   const link = `products/?category=${cat.category}`;

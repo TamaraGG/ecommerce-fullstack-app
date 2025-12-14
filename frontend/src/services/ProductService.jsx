@@ -62,3 +62,23 @@ export async function getCategories() {
   const data = await response.json();
   return data;
 }
+
+export async function addProduct(product) {
+  const response = await fetch(URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(product),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    const errorMessage =
+      `${errorData.message}. ${errorData.details}` || response.statusText;
+    throw new Error(`BACKEND: ${errorMessage}`);
+  }
+
+  const data = await response.json();
+  return data;
+}

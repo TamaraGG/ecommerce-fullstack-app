@@ -1,0 +1,28 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.message {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 4rem;
+  color: #7f8c8d;
+}
+
+.error {
+  text-align: center;
+  color: #c0392b;
+  padding: 2rem;
+  font-weight: bold;
+}
+
+.productSection {
+  margin-bottom: 4rem;
+}
+
+.reviewsSection {
+  border-top: 1px solid #ecf0f1;
+  padding-top: 2rem;
+}

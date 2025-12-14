@@ -4,7 +4,7 @@ import useFetch from "../hooks/useFetch";
 import ProductCard from "../components/ProductCard";
 import { getProducts } from "../services/ProductService";
 import ReviewsList from "../components/reviews/ReviewList";
-import styles from "../styles/index.module.css";
+import styles from "../styles/ProductPage.module.css";
 
 function ProductPage() {
   const { id } = useParams();
