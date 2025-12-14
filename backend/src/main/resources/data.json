@@ -3,6 +3,7 @@
     "name": "Sony WH-1000XM5",
     "category": "headphones",
     "price": 348.00,
+    "imageBase64": "https://www.sony.ru/image/5d02da5df552836db894cead8a68f5f3?fmt=pjpeg&wid=330&bgcolor=FFFFFF&bgc=FFFFFF",
     "description": "Флагманские полноразмерные наушники с лучшим шумоподавлением на рынке.",
     "specs": {
       "color": "black",
@@ -16,6 +17,7 @@
     "name": "Apple AirPods Max",
     "category": "headphones",
     "price": 549.00,
+    "imageBase64":"https://ir.ozone.ru/s3/multimedia-1-t/c1000/7132777589.jpg",
     "description": "Вычислительное аудио, безупречный дизайн и экосистема Apple.",
     "specs": {
       "color": "sky blue",
@@ -29,6 +31,7 @@
     "name": "Bose QuietComfort 45",
     "category": "headphones",
     "price": 329.00,
+    "imageBase64":"https://ir.ozone.ru/s3/multimedia-1-v/c1000/7522882447.jpg",
     "description": "Легендарная тишина, комфорт и звук.",
     "specs": {
       "color": "white smoke",
@@ -41,6 +44,7 @@
     "name": "Sennheiser Momentum 4",
     "category": "headphones",
     "price": 299.99,
+    "imageBase64":"https://ir.ozone.ru/s3/multimedia-1-f/w500/6994483791.jpg",
     "description": "Аудиофильское качество звука и невероятная батарея.",
     "specs": {
       "battery_life": "60h",
@@ -53,6 +57,7 @@
     "name": "Marshall Major IV",
     "category": "headphones",
     "price": 149.00,
+    "imageBase64":"https://ir.ozone.ru/s3/multimedia-1-p/c1000/7111388977.jpg",
     "description": "Иконический дизайн и 80+ часов беспроводного воспроизведения.",
     "specs": {
       "color": "brown",
@@ -65,6 +70,7 @@
     "name": "iPhone 15 Pro",
     "category": "smartphones",
     "price": 999.00,
+    "imageBase64":"https://ir.ozone.ru/s3/multimedia-x/c1000/6759468753.jpg",
     "description": "Титановый корпус, чип A17 Pro и кнопка Action Button.",
     "specs": {
       "storage": "128GB",
@@ -78,6 +84,7 @@
     "name": "Samsung Galaxy S24 Ultra",
     "category": "smartphones",
     "price": 1299.00,
+    "imageBase64":"https://ir.ozone.ru/s3/multimedia-m/c1000/6904421554.jpg",
     "description": "Искусственный интеллект Galaxy AI и встроенный стилус S-Pen.",
     "specs": {
       "storage": "512GB",
@@ -91,6 +98,7 @@
     "name": "Google Pixel 8",
     "category": "smartphones",
     "price": 699.00,
+    "imageBase64":"https://ir.ozone.ru/s3/multimedia-1-g/c600/6966602476.jpg",
     "description": "Самый умный смартфон с чистой камерой Android.",
     "specs": {
       "processor": "Google Tensor G3",
@@ -103,6 +111,7 @@
     "name": "Xiaomi 13T Pro",
     "category": "smartphones",
     "price": 599.00,
+    "imageBase64":"https://ir.ozone.ru/s3/multimedia-i/c1000/6765356718.jpg",
     "description": "Камеры Leica и сверхбыстрая зарядка 120W.",
     "specs": {
       "charging_speed": "120W",
@@ -115,6 +124,7 @@
     "name": "Nothing Phone (2)",
     "category": "smartphones",
     "price": 649.00,
+    "imageBase64":"https://ir.ozone.ru/s3/multimedia-f/c600/6749182815.jpg",
     "description": "Уникальный прозрачный дизайн с подсветкой Glyph Interface.",
     "specs": {
       "os": "Nothing OS 2.0",
@@ -127,6 +137,7 @@
     "name": "MacBook Air 13 M2",
     "category": "laptops",
     "price": 1099.00,
+    "imageBase64":"https://ir.ozone.ru/s3/multimedia-j/c1000/6470451799.jpg",
     "description": "Невероятно тонкий. Сверхбыстрый чип M2.",
     "specs": {
       "cpu": "Apple M2",
@@ -140,6 +151,7 @@
     "name": "Dell XPS 13 Plus",
     "category": "laptops",
     "price": 1399.00,
+    "imageBase64":"https://ir.ozone.ru/s3/multimedia-1-0/c1000/6985581408.jpg",
     "description": "Футуристичный дизайн с невидимым тачпадом.",
     "specs": {
       "cpu": "Intel Core i7-1360P",
@@ -152,6 +164,7 @@
     "name": "Asus ROG Zephyrus G14",
     "category": "laptops",
     "price": 1650.00,
+    "imageBase64":"https://ir.ozone.ru/s3/multimedia-1-1/c400/8372262169.jpg",
     "description": "Мощный игровой ноутбук в компактном 14-дюймовом корпусе.",
     "specs": {
       "gpu": "NVIDIA RTX 4060",
@@ -164,6 +177,7 @@
     "name": "Lenovo ThinkPad X1 Carbon",
     "category": "laptops",
     "price": 1800.00,
+    "imageBase64":"https://ir.ozone.ru/s3/multimedia-1-8/c1000/7049092364.jpg",
     "description": "Золотой стандарт бизнес-ноутбуков. Легкий и прочный.",
     "specs": {
       "material": "carbon fiber",
@@ -176,6 +190,7 @@
     "name": "Apple Watch Ultra 2",
     "category": "smartwatches",
     "price": 799.00,
+    "imageBase64":"https://ir.ozone.ru/s3/multimedia-f/c1000/6782472771.jpg",
     "description": "Самые прочные и функциональные часы Apple для экстремалов.",
     "specs": {
       "case_material": "titanium",
@@ -188,6 +203,7 @@
     "name": "Garmin Fenix 7 Pro",
     "category": "smartwatches",
     "price": 899.99,
+    "imageBase64":"https://ir.ozone.ru/s3/multimedia-t/c1000/6759264233.jpg",
     "description": "Мультиспортивные часы с зарядкой от солнца.",
     "specs": {
       "solar_charging": true,
@@ -200,6 +216,7 @@
     "name": "Samsung Galaxy Watch 6 Classic",
     "category": "smartwatches",
     "price": 399.00,
+    "imageBase64":"https://cdn1.ozone.ru/s3/multimedia-z/6735691547.jpg",
     "description": "Возвращение любимого вращающегося безеля.",
     "specs": {
       "bezel": "rotating",
@@ -212,6 +229,7 @@
     "name": "Sony Alpha a7 IV",
     "category": "cameras",
     "price": 2498.00,
+    "imageBase64":"https://ir.ozone.ru/s3/multimedia-1/c1000/6283147453.jpg",
     "description": "Гибридная полнокадровая камера для фото и видео.",
     "specs": {
       "sensor": "Full-Frame 33MP",
@@ -224,6 +242,7 @@
     "name": "Fujifilm X-T5",
     "category": "cameras",
     "price": 1699.00,
+    "imageBase64":"https://ir.ozone.ru/s3/multimedia-1-z/6986300363.jpg",
     "description": "Классический дизайн и передовые технологии цветопередачи.",
     "specs": {
       "sensor": "APS-C 40MP",
@@ -236,6 +255,7 @@
     "name": "GoPro HERO 12 Black",
     "category": "cameras",
     "price": 399.99,
+    "imageBase64":"https://ir.ozone.ru/s3/multimedia-1-v/c1000/7349599651.jpg",
     "description": "Лучшая экшн-камера с невероятной стабилизацией.",
     "specs": {
       "stabilization": "HyperSmooth 6.0",
