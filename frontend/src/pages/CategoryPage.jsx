@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import ProductList from "../components/ProductList";
 import { getSortedPaginatedProducts } from "../services/ProductService";
+import styles from "../styles/index.module.css";
 
 function CategoryPage() {
   const [searchParams] = useSearchParams();

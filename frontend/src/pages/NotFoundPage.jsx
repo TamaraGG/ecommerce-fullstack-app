@@ -1,3 +1,5 @@
+import styles from "../styles/index.module.css";
+
 function NotFoundPage() {
   return (
     <div className={styles.container}>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { addReview } from "../../services/ReviewService";
 import useMutation from "../../hooks/useMutation";
+import styles from "../../styles/index.module.css";
 
 function AddReviewForm({ productId, onSuccess }) {
   const [form, setForm] = useState({

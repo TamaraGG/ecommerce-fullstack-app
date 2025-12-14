@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import AddToCartButton from "./cart/AddToCartButton";
 import image from "../assets/default.png";
+import styles from "../styles/index.module.css";
 
 function ProductSmallCard({ product }) {
   const link = "/products/" + product.id;

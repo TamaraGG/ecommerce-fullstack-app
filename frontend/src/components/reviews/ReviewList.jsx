@@ -5,6 +5,7 @@ import PaginationControls from "../controls/PaginationControls";
 import ReviewsListView from "./ReviewsListView";
 import SortControls from "../controls/SortControls";
 import AddReviewForm from "./AddReviewForm";
+import styles from "../../styles/index.module.css";
 
 const SORTING_OPTIONS = ["rating", "createdAt", "author", "comment"];
 

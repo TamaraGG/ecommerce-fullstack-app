@@ -1,4 +1,5 @@
 import ReviewItem from "./ReviewItem";
+import styles from "../../styles/index.module.css";
 
 function ReviewsListView({ reviews }) {
   if (!reviews || reviews.length === 0) {

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "../hooks/useCart";
 import ProductList from "../components/ProductList";
 import AddOrderForm from "../components/cart/AddOrderForm";
+import styles from "../styles/index.module.css";
 
 function CartPage() {
   const { cartItems, totalItems } = useCart();

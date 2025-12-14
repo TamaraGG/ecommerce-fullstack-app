@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import CategoryCard from "../components/CategoryCard";
 import useFetch from "../hooks/useFetch";
 import { getCategories } from "../services/ProductService";
+import styles from "../styles/index.module.css";
 
 function MainPage() {
   const fetchData = () => getCategories();

@@ -1,5 +1,6 @@
 import AddToCartButton from "./cart/AddToCartButton";
 import image from "../assets/default.png";
+import styles from "../styles/index.module.css";
 
 function ProductCard({ product }) {
   const productImage = product.imageBase64 ? product.imageBase64 : image;

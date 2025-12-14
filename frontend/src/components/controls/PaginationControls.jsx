@@ -1,3 +1,5 @@
+import styles from "../../styles/index.module.css";
+
 function PaginationControls({ currentPage, totalPages, onPageChange }) {
   // if (totalPages <= 1) {
   //   return null;

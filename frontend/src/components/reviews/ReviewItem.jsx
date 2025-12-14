@@ -1,3 +1,5 @@
+import styles from "../../styles/index.module.css";
+
 function ReviewItem({ review }) {
   const formatDate = (isoString) => {
     if (!isoString) return "Unknown date";

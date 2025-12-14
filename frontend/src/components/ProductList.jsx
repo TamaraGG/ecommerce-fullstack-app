@@ -4,6 +4,7 @@ import ProductSmallCard from "./ProductSmallCard";
 import PaginationControls from "./controls/PaginationControls";
 import SortControls from "./controls/SortControls";
 import { useCallback } from "react";
+import styles from "../styles/index.module.css";
 
 const SORTING_OPTIONS = ["price", "averageRating", "name", "reviewCount"];
 

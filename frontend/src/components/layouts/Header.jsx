@@ -1,35 +1,38 @@
-import CartButton from "../cart/CartButton";
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar";
 import { useCart } from "../../hooks/useCart";
+import styles from "../../styles/index.module.css";
 
 function Header() {
   const { totalItems } = useCart();
 
   return (
     <>
-      <header className="header">
-        <div className="logo">
-          <a href="#">{/* <img src="" alt="" width="75px"></img> */}</a>
-        </div>
+      <header className={styles.header}>
+        <div className={styles.container}>
+          <div className={styles.logoWraapper}>
+            <Link to="/" className={styles.logoLink}>
+              {/* <img src="/logo.png" alt="Logo" className={styles.logoImg} /> */}
+            </Link>
+          </div>
 
-        <SearchBar />
-        <ul id="navbar">
-          <li>
-            <Link className="active" to="/">
+          <div className={styles.searchWrapper}>
+            <SearchBar />
+          </div>
+
+          <nav className={styles.nav}>
+            <Link to="/" className={styles.link}>
               Main Page
             </Link>
-          </li>
-          <li>
-            <Link to="/">Add Product</Link>
-          </li>
-          <li>
-            <Link to="/cart">
-              <i className="fa fa-shopping-basket" aria-hidden="true"></i>
-              Cart ({totalItems})
+            <Link to="/" className={styles.link}>
+              Add Product
             </Link>
-          </li>
-        </ul>
+            <Link to="/cart" className={`${styles.link} ${styles.cartLink}`}>
+              <span className={styles.icon}>🛒</span>
+              <span>Cart ({totalItems})</span>
+            </Link>
+          </nav>
+        </div>
       </header>
     </>
   );
