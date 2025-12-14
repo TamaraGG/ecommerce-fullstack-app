@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { addOrder } from "../../services/OrderService";
 import useMutation from "../../hooks/useMutation";
 import { useCart } from "../../hooks/useCart";
-import styles from "../../styles/index.module.css";
+import styles from "../../styles/AddReviewForm.module.css";
 
 function AddOrderForm({ onSuccess }) {
   const [form, setForm] = useState({

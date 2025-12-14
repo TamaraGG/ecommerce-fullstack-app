@@ -1,8 +1,6 @@
 .container {
   display: flex;
   width: 100%;
-  border-color: #000;
-  border-width: 5px;
 }
 
 .searchBox {
@@ -11,29 +9,36 @@
 
 .input {
   width: 100%;
-  padding: 1rem 1rem 1rem 1.5rem;
-  border: none;
-  border-radius: 1.8px 0 0 1.8px;
+  padding: 12px 16px;
+  border: 1px solid #333;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
   font-size: 1rem;
   outline: none;
-  background-color: #111111;
-  color: #c9c9c9;
+  background-color: #000;
+  color: #fff;
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  border-color: #7b2cbf;
 }
 
 .button {
-  padding: 0 1.5rem;
-  background-color: #111111;
-  color: #b4b4b4;
-  border: none;
-  border-radius: 0 1.5px 1.5px 0;
+  padding: 0 24px;
+  background-color: #111;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 0 4px 4px 0;
   cursor: pointer;
-  text-transform: lowercase;
-  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  transition: all 0.2s;
 }
 
 .button:hover {
-  border-style: solid;
-  border-color: #b4b4b4;
-  border-width: 2px;
-  transition: color 0.2s;
+  background-color: #7b2cbf;
+  border-color: #7b2cbf;
+  color: #fff;
 }

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import useMutation from "../hooks/useMutation";
 import { addProduct } from "../services/ProductService";
-import commonStyles from "../styles/index.module.css";
 import styles from "../styles/AddProductPage.module.css";
 import { useNavigate } from "react-router-dom";
 
@@ -18,7 +17,6 @@ function AddProductPage() {
     imageBase64: null,
   });
 
-  // Характеристики храним как массив объектов для удобного рендеринга инпутов
   const [specs, setSpecs] = useState([{ key: "", value: "" }]);
   const [preview, setPreview] = useState(null);
 
@@ -39,7 +37,6 @@ function AddProductPage() {
     }
   };
 
-  // Управление динамическими полями specs
   const handleSpecChange = (index, field, value) => {
     const newSpecs = [...specs];
     newSpecs[index][field] = value;
@@ -58,7 +55,6 @@ function AddProductPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Преобразуем массив specs обратно в объект { key: value }
     const specsObject = specs.reduce((acc, item) => {
       if (item.key.trim() && item.value.trim()) {
         acc[item.key.trim()] = item.value.trim();
@@ -75,18 +71,17 @@ function AddProductPage() {
 
     try {
       await executeMutation(payload);
-      navigate("/"); // Перенаправление на главную после успеха
+      navigate("/");
     } catch (err) {
       console.error("Failed to add product", err);
     }
   };
 
   return (
-    <div className={commonStyles.container}>
-      <h1 className={commonStyles.title}>Add New Product</h1>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Add New Product</h1>
 
       <form onSubmit={handleSubmit} className={styles.formWrapper}>
-        {/* Основная информация */}
         <div className={styles.section}>
           <label className={styles.label}>
             Name
@@ -154,7 +149,6 @@ function AddProductPage() {
           </label>
         </div>
 
-        {/* Изображение */}
         <div className={styles.section}>
           <span className={styles.sectionTitle}>Product Image</span>
           <div className={styles.imageUploadContainer}>
@@ -176,7 +170,6 @@ function AddProductPage() {
           </div>
         </div>
 
-        {/* Характеристики (Specs) */}
         <div className={styles.section}>
           <div className={styles.specsHeader}>
             <span className={styles.sectionTitle}>Specifications</span>
@@ -225,11 +218,11 @@ function AddProductPage() {
           </div>
         </div>
 
-        {error && <div className={commonStyles.error}>{error}</div>}
+        {error && <div className={styles.error}>{error}</div>}
 
         <button
           type="submit"
-          className={commonStyles.submitButton}
+          className={styles.submitButton}
           disabled={isMutating}
         >
           {isMutating ? "Adding..." : "Save Product"}

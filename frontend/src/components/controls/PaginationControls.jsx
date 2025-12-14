@@ -1,4 +1,4 @@
-import styles from "../../styles/index.module.css";
+import styles from "../../styles/PaginationControls.module.css";
 import React, { memo } from "react";
 
 function PaginationControls({ currentPage, totalPages, onPageChange }) {

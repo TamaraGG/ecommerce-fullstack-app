@@ -2,100 +2,71 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background-color: #0b0c15;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  overflow: hidden;
+  min-height: 200px;
+  background-color: #0a0a0a;
+  border: 1px solid #333;
+  border-radius: 4px;
   transition: all 0.2s ease-in-out;
-  box-sizing: border-box;
+  position: relative;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  transform: translateY(-4px);
+  border-color: #ff007f;
+  box-shadow: 0 4px 20px rgba(255, 0, 127, 0.15);
+  z-index: 2;
 }
 
-/* --- ИСПОЛЬЗУЕМ GRID ВМЕСТО FLEX --- */
 .link {
   display: grid;
-  /* Две колонки: 
-       1. auto (под размер картинки)
-       2. 1fr (всё оставшееся место) */
-  grid-template-columns: auto 1fr;
-  /* Две строки:
-       1. auto (высота шапки)
-       2. 1fr (низ растягивается, чтобы прижать info к низу) */
-  grid-template-rows: auto 1fr;
-
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
   height: 100%;
-  padding: 1.5rem;
-  box-sizing: border-box;
+  padding: 2rem;
+  gap: 1.5rem;
   text-decoration: none;
   color: inherit;
-  gap: 10px; /* Расстояние между картинкой и текстом */
 }
 
 .imageWrapper {
-  /* Позиция в сетке: 1 колонка, 1 строка */
-  grid-column: 1;
-  grid-row: 1;
-
-  width: 64px;
-  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
-  background-color: rgba(255, 255, 255, 0.03);
 }
 
 .image {
-  max-width: 80%;
-  max-height: 80%;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+  filter: grayscale(100%);
+  transition: filter 0.3s;
+}
+
+.card:hover .image {
+  filter: grayscale(0%);
 }
 
 .content {
-  /* Позиция в сетке: 2 колонка, 1 строка */
-  grid-column: 2;
-  grid-row: 1;
-
-  /* Прижимаем блок к правому верхнему углу ячейки */
-  justify-self: end;
-  align-self: start;
-
-  /* Убираем лишние отступы */
-  margin: 0;
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .title {
-  margin: 0;
-  font-size: 0.85rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: #ffffff;
   text-transform: uppercase;
+  margin-bottom: 0.5rem;
   letter-spacing: 0.5px;
-
-  /* Белая рамка */
-  border: 1px solid #ffffff;
-  border-radius: 8px;
-  padding: 6px 12px;
-  white-space: nowrap; /* Запрещаем перенос текста внутри рамки */
 }
 
 .info {
-  /* Позиция в сетке: Растянуться на обе колонки (от 1 до конца), 2 строка */
-  grid-column: 1 / -1;
-  grid-row: 2;
-
-  /* Прижимаем к самому низу карточки */
-  align-self: end;
-
-  margin: 0;
-  margin-top: 1rem;
-  color: #9da5b4;
   font-size: 0.9rem;
+  color: #777;
+  font-weight: 500;
+}
+
+.card:hover .info {
+  color: #b8b8b8;
 }
