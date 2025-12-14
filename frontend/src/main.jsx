@@ -10,6 +10,8 @@ import SearchPage from "./pages/SearchPage.jsx";
 import CategoryPage from "./pages/CategoryPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import styles from "./styles/index.module.css";
+import AddProductPage from "./pages/AddProductPage.jsx";
+import "./styles/global.css";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "search",
         element: <SearchPage />,
+      },
+      {
+        path: "add_product",
+        element: <AddProductPage />,
       },
       {
         path: "*",
