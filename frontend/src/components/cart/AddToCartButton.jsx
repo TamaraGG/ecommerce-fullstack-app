@@ -1,6 +1,6 @@
 import { useCart } from "../../hooks/useCart";
 import { Link } from "react-router-dom";
-import styles from "../../styles/index.module.css";
+import styles from "../../styles/AddToCartButton.module.css";
 
 function AddToCartButton({ product, quantity = 1 }) {
   const { addToCart, removeFromCart, cartItems } = useCart();

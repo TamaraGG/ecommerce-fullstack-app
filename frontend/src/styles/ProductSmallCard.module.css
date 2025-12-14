@@ -1,0 +1,78 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  background: #391455;
+  background: linear-gradient(315deg, #391455, #702dd6);
+
+  border: none;
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  text-align: left;
+  color: #ffffff;
+  box-shadow: 0 10px 20px rgba(118, 24, 186, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.imageWrapper {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  border-radius: 16px;
+}
+
+.image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 18px;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+  color: #ffffff;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1.2rem;
+
+  color: #ffffff;
+  margin: 0.5rem 0;
+  opacity: 0.9;
+}
+
+.meta {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.actions {
+  margin-top: auto;
+  padding-top: 1rem;
+}
