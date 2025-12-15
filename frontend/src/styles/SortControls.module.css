@@ -1,0 +1,85 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  margin-right: 0.5rem;
+}
+
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-color: #000;
+  border: 1px solid #fff;
+  border-radius: 2px;
+  padding: 10px 40px 10px 15px;
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s;
+
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+}
+
+.select:hover,
+.select:focus {
+  border-color: #ff007f;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff007f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+.directionGroup {
+  display: flex;
+  gap: 10px;
+}
+
+.radioLabel {
+  cursor: pointer;
+  position: relative;
+}
+
+.radioInput {
+  display: none;
+}
+
+.radioText {
+  display: inline-block;
+  padding: 10px 16px;
+  border: 1px solid #333;
+  border-radius: 2px;
+
+  color: #888;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.radioLabel:hover .radioText {
+  border-color: #fff;
+  color: #fff;
+}
+
+.radioInput:checked + .radioText {
+  border-color: #ff007f;
+  color: #ff007f;
+  background-color: rgba(255, 0, 127, 0.05);
+  box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
+}

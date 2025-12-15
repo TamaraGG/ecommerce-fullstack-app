@@ -1,0 +1,60 @@
+.container {
+  width: 100%;
+}
+
+.mainButton {
+  width: 100%;
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  padding: 14px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  letter-spacing: 1px;
+}
+
+.mainButton:hover:not(:disabled) {
+  background-color: #ffffff;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 #333;
+}
+
+.mainButton:disabled {
+  border-color: #333;
+  color: #555;
+  cursor: not-allowed;
+}
+
+.controlsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  padding: 8px 16px;
+  width: 100%;
+}
+
+.roundButton {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  border: 1px solid #555;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.roundButton:hover:not(:disabled) {
+  border-color: #ff007f;
+  color: #ff007f;
+}

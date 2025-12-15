@@ -1,0 +1,65 @@
+.header {
+  background-color: #000000;
+  border-bottom: 1px solid #333;
+  padding: 1.5rem 0;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.logoLink {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+}
+
+.searchWrapper {
+  flex-grow: 1;
+  max-width: 600px;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.link {
+  color: #888;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.link:hover {
+  color: #ff007f;
+}
+
+.cartLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.cartLink:hover {
+  border-color: #9d4edd;
+  color: #9d4edd;
+  box-shadow: 0 0 10px rgba(157, 78, 221, 0.3);
+}
