@@ -1,8 +1,9 @@
 package com.example.e_commerce_backend.services;
 
-import com.example.e_commerce_backend.dtos.CategoryStatsDto;
-import com.example.e_commerce_backend.dtos.CreateProductRequestDto;
-import com.example.e_commerce_backend.dtos.ProductDto;
+import com.example.e_commerce_backend.dtos.product.CategoryStatsDto;
+import com.example.e_commerce_backend.dtos.product.CreateProductRequestDto;
+import com.example.e_commerce_backend.dtos.product.ProductDto;
+import com.example.e_commerce_backend.exceptions.NotEnoughStockException;
 import com.example.e_commerce_backend.exceptions.ResourceNotFoundException;
 import com.example.e_commerce_backend.mappers.ProductMapper;
 import com.example.e_commerce_backend.models.Product;
@@ -11,14 +12,15 @@ import com.example.e_commerce_backend.services.interfaces.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.resilience.annotation.Retryable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -26,13 +28,13 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
     @Override
-    public ProductDto getById(String id) {
+    public ProductDto getProductById(String id) {
         Product retrievedProduct = productRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Product not found"));
         return ProductMapper.toProductDto(retrievedProduct);
     }
 
-    @Override @Transactional
+    @Override @CacheEvict(value = "categories", allEntries = true)
     public ProductDto createProduct(CreateProductRequestDto request) {
         Objects.requireNonNull(request, "Product name must not be null");
         Product newProduct = Product.builder()
@@ -45,7 +47,6 @@ public class ProductServiceImpl implements ProductService {
                 .quantity(request.getQuantity())
                 .build();
         Product savedProduct = productRepository.save(newProduct);
-        refreshCategories(); //TODO: not sure this is good
         return ProductMapper.toProductDto(savedProduct);
     }
 
@@ -60,7 +61,9 @@ public class ProductServiceImpl implements ProductService {
         return products.map(ProductMapper::toProductDto);
     }
 
-    @Override
+
+
+    @Override @Transactional @Retryable(value = OptimisticLockingFailureException.class, maxRetries = 3)
     public void updateProductRating(String productId, Integer rating) {
         Product pToUpdate = productRepository.findById(productId)
                 .orElseThrow(()-> new ResourceNotFoundException("Product not found"));
@@ -84,8 +87,22 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAllCategories();
     }
 
-    @CacheEvict(value = "categories", allEntries = true)
-    public void refreshCategories() {
+    @Override
+    public Page<ProductDto> searchProductsByPattern(String pattern, Pageable pageable) {
+        Page<Product> products = productRepository.searchByText(pattern, pageable);
+        return products.map(ProductMapper::toProductDto);
+    }
+
+    @Override
+    public void decreaseStock(String productId, Integer amount) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(()-> new ResourceNotFoundException("Product not found"));
+        if (product.getQuantity() < amount) {
+            throw new NotEnoughStockException("Not enough stock to reserve product: " + product.getName()
+                        +". Available stock: " + product.getQuantity());
+        }
+        product.setQuantity(product.getQuantity() - amount);
+        productRepository.save(product);
     }
 
 

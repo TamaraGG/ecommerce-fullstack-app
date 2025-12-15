@@ -1,8 +1,7 @@
 package com.example.e_commerce_backend.services;
 
-import com.example.e_commerce_backend.dtos.CategoryStatsDto;
-import com.example.e_commerce_backend.dtos.CreateReviewRequestDto;
-import com.example.e_commerce_backend.dtos.ReviewDto;
+import com.example.e_commerce_backend.dtos.review.CreateReviewRequestDto;
+import com.example.e_commerce_backend.dtos.review.ReviewDto;
 import com.example.e_commerce_backend.exceptions.ResourceNotFoundException;
 import com.example.e_commerce_backend.mappers.ReviewMapper;
 import com.example.e_commerce_backend.models.Review;
@@ -10,14 +9,13 @@ import com.example.e_commerce_backend.repos.ReviewRepository;
 import com.example.e_commerce_backend.services.interfaces.ProductService;
 import com.example.e_commerce_backend.services.interfaces.ReviewService;
 import lombok.AllArgsConstructor;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.resilience.annotation.Retryable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -28,15 +26,12 @@ public class ReviewServiceImpl implements ReviewService {
 
 
 
-    @Override @Transactional
+    @Override @Transactional @Retryable(value = OptimisticLockingFailureException.class, maxRetries = 3)
     public ReviewDto createReview(CreateReviewRequestDto request) {
         Objects.requireNonNull(request, "request is null");
         if (!productService.existsById(request.getProductId())) {
             throw new ResourceNotFoundException(request.getProductId() + " not found");
         }
-//        Optional.ofNullable(request.getProductId())
-//                .filter(productService::ifExistsById)
-//                .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
         Review newReview = Review.builder()
                 .productId(request.getProductId())
